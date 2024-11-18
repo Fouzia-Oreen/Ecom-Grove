@@ -1,17 +1,26 @@
+import path from 'path'
 import express from 'express';
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-dotenv.config()
-const app = express();
+import cookieParser from 'cookie-parser';
+dotenv.config();
 
-mongoose
-.connect(process.env.MONGO_URI)
-.then(() => {
-  console.log('Mongo db is connected');
+
+// Utils
+import connectDB from './config/db.js'
+const app = express();
+const PORT = process.env.PORT || 5000;
+connectDB();
+
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(cookieParser())
+
+app.get('/get', (req, res) => {
+  res.send('Hello World')
 })
 
 
-const PORT = process.env.PORT
 app.listen(PORT, () => {
-    console.log('Server is running on port 3000!');
-  });
+    console.log(`Server is running on port ${PORT}`);
+});

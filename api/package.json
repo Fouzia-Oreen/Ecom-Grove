@@ -21,8 +21,9 @@
   "description": "e-commerce website",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "dev": "concurrently \" npm run client\" \"npm run api\" ",
+    "api": "nodemon api/server.js",
+    "client" : "npm-run-dev --prefix client"
   },
   "author": "Fouzia Oreen",
   "license": "ISC",
