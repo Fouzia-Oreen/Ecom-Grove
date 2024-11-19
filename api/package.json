@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \" npm run client\" \"npm run api\" ",
-    "api": "nodemon api/server.js",
+    "start": "nodemon api/server.js",
     "client" : "npm-run-dev --prefix client"
   },
   "author": "Fouzia Oreen",
