@@ -1,21 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 :root {
   /* font family */
-  font-family: "Outfit", sans-serif;
-  line-height: 1.5;
+  --body: "Montserrat", serif;
+  --header: "Lato", sans-serif;
   
   /* colors */
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --base:  #e4f2f7;
+  --light-2: #B1D1DA;
+  --light-3: #79B6C8;
+  --light-4: #518b99;
+  --dark-1: #869599;
+  --dark-2: #606060;
+  --dark-3: #303030;
+  --dark-4: #1F1F1F;
 }
-
+body {
+  background: var(--base);
+  color: var(--dark-7);
+  font-family: var(--body-font);
+}
+h1,h2,h3,h4,h5 {
+  font-family: var(--header-font);
+  font-style: normal;
+  color: var(--dark-3);
+}
+input, textarea {
+  color: var(--dark-3);
+  border: 1px solid var(--dark-2);
+  border-radius: 4px;
+  outline: none;
+  padding: .5rem;
+}
+.btn {
+  padding: .5rem 1.5rem;
+  background-color: var(--light-3);
+  color: var(--dark-4);
+  font-size: medium;
+  font-weight: 700;
+  border-radius: 4px;
+  transition: color .5s;
+}
+.add-btn {
+  padding: .5rem 1.5rem;
+  background-color: var(--dark-4);
+  color: var(--light-2);
+  font-size: medium;
+  font-weight: 700;
+  border-radius: 4px;
+}
+.add-btn:hover{
+  background-color: var(--dark-3);
+}
