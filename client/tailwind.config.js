@@ -17,13 +17,13 @@ export default {
       },
       colors: {
         "base": "#e4f2f7",
-        "light-2" : "#B1D1DA",
-        "light-3" : "#79B6C8",
-        "light-4" : "#437C8A",
-        "dark-1" : "#869599",
-        "dark-2" : "#606060",
-        "dark-3" : "#303030",
-        "dark-4" : "#1F1F1F",
+        "light-1" : "#AABFC3",
+        "light-2" : "#8BB2B7",
+        "light-3" : "#77A6C0",
+        "dark-1" : "#979B9A",
+        "dark-2" : "#314346",
+        "dark-3" : "#222e30",
+        "dark-4" : "#192224",
       }
     }
   }
