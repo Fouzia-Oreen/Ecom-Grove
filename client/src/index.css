@@ -10,28 +10,42 @@
   --header: "Lato", sans-serif;
   
   /* colors */
-  --base:  #e4f2f7;
-  --light-2: #B1D1DA;
-  --light-3: #79B6C8;
-  --light-4: #518b99;
-  --dark-1: #869599;
-  --dark-2: #606060;
-  --dark-3: #303030;
-  --dark-4: #1F1F1F;
+  --base: #e4f2f7;
+  --light-1 : #AABFC3;
+  --light-2 : #8BB2B7;
+  --light-3 : #77A6C0;
+  --dark-1 : #979B9A;
+  --dark-2 : #314346;
+  --dark-3 : #222e30;
+  --dark-4 : #192224;
+  
+  /* width */
+  --max-width-1400: 1400px;
+  --max-width-1200: 1200px;
+  --max-width-900: 900px;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/* sections */
+.section__container {
+  max-width: var(--max-width-1400);
+  margin: 0 auto;
 }
 body {
   background: var(--base);
-  color: var(--dark-7);
+  color: var(--dark-4);
   font-family: var(--body-font);
 }
 h1,h2,h3,h4,h5 {
   font-family: var(--header-font);
   font-style: normal;
-  color: var(--dark-3);
+  color: var(--light-4_hover);
 }
 input, textarea {
-  color: var(--dark-3);
-  border: 1px solid var(--dark-2);
+  border: 1px solid var(--light-1);
   border-radius: 4px;
   outline: none;
   padding: .5rem;
@@ -39,7 +53,7 @@ input, textarea {
 .btn {
   padding: .5rem 1.5rem;
   background-color: var(--light-3);
-  color: var(--dark-4);
+  color: var(--dark-3);
   font-size: medium;
   font-weight: 700;
   border-radius: 4px;
@@ -47,12 +61,13 @@ input, textarea {
 }
 .add-btn {
   padding: .5rem 1.5rem;
-  background-color: var(--dark-4);
-  color: var(--light-2);
+  background-color: var(--dark-3);
+  color: var(--base);
   font-size: medium;
   font-weight: 700;
   border-radius: 4px;
+  transition: .5s;
 }
 .add-btn:hover{
-  background-color: var(--dark-3);
+  background-color: var(--dark-4);
 }
