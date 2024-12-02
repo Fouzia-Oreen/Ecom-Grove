@@ -12,18 +12,15 @@ export default {
         'custom-900': '900px', 
       },
       fontFamily : {
-        'header': "Lato, sans-serif",
-        'body': "Montserrat, serif"
+        'body': "Nunito, sans-serif"
       },
       colors: {
-        "base": "#e4f2f7",
-        "light-1" : "#AABFC3",
-        "light-2" : "#8BB2B7",
-        "light-3" : "#77A6C0",
-        "dark-1" : "#979B9A",
-        "dark-2" : "#314346",
-        "dark-3" : "#222e30",
-        "dark-4" : "#192224",
+        "color_1" : "#f5f5f5",
+        "color_2" : "#C0BFC2",
+        "color_3" : "#abacad",
+        "color_4" : "#2e2e2e",
+        "color_5" : "#141414",
+        "color_6" : "#D7263d",
       }
     }
   }
