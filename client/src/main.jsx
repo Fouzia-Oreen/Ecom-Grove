@@ -6,9 +6,6 @@ import './index.css';
 import { Provider } from 'react-redux';
 import store from './redux/store.js';
 import Login from './pages/Auth/Login.jsx';
-store
-
-// Auth
 
 
 const router = createBrowserRouter(
