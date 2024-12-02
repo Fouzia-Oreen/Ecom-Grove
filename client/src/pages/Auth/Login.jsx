@@ -43,7 +43,7 @@ const Login = () => {
 
     
   return (
-     <div>
+   <div>
      <section className="section__container flex flex-col md:flex-row flex-wrap  gap-6">
        <div className="md:mt-[5rem] flex-1 mb-4">
          <h1 className="text-3xl font-semibold mb-4">Sign In</h1>

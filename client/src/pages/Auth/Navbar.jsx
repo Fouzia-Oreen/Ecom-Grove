@@ -89,7 +89,7 @@ export const Navbar = () => {
         </button>
         {dropdownOpen && userInfo && (
           <ul
-            className={`absolute right-0 mt-2 mr-1 space-y-2 bg-color_2 ${
+            className={`absolute right-0 mt-2 mr-1 space-y-2 bg-color_2 border-[1px] border-color_3 ${
               !userInfo.isAdmin ? "-right-2" : "-top-50"
             } `}
           >
