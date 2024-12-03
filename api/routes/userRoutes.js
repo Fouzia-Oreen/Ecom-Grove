@@ -7,7 +7,7 @@ import {
   getCurrentUserProfile , 
   updateCurrentProfile, 
   deleteUserById, 
-  getuserById, 
+  getUserById, 
   updateUserById} from "../controllers/userController.js";
 import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
 
@@ -19,6 +19,8 @@ router
   .post(registerUser)
   .get(authenticate, authorizeAdmin, getAllUsers);
 
+// register
+// router.post(("/register"), registerUser);
 // login 
 router.post(("/login"), loginUser);
 // logout 
@@ -35,7 +37,7 @@ router
 router
     .route('/:id')
     .delete(authenticate, authorizeAdmin , deleteUserById)
-    .get(authenticate, authorizeAdmin , getuserById)
+    .get(authenticate, authorizeAdmin , getUserById)
     .put(authenticate, authorizeAdmin , updateUserById)
 
 

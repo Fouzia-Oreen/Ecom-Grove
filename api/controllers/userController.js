@@ -5,35 +5,35 @@ import generateToken from "../utils/generateToken.js";
 
 // create or register user
 const registerUser = asyncHandler(async (req, res) => {
-    const { username, email, password } = req.body;
+  const { username, email, password } = req.body;
 
-    if (!username || !email || !password) {
-      throw new Error("Please fill all the inputs.");
-    }
-  
-    const userExists = await User.findOne({ email });
-    if (userExists) res.status(400).send("User already exists");
-  
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-    const newUser = new User({ username, email, password: hashedPassword });
-  
-    try {
-      await newUser.save();
-      createToken(res, newUser._id);
-  
-      res.status(201).json({
-        _id: newUser._id,
-        username: newUser.username,
-        email: newUser.email,
-        isAdmin: newUser.isAdmin,
-      });
-    } catch (error) {
-      res.status(400);
-      throw new Error("Invalid user data");
-    }
+  if (!username || !email || !password) {
+    throw new Error("Please fill all the inputs.");
+  }
+
+  const userExists = await User.findOne({ email });
+  if (userExists) res.status(400).send("User already exists");
+
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+  const newUser = new User({ username, email, password: hashedPassword });
+
+  try {
+    await newUser.save();
+    createToken(res, newUser._id);
+
+    res.status(201).json({
+      _id: newUser._id,
+      username: newUser.username,
+      email: newUser.email,
+      isAdmin: newUser.isAdmin,
+    });
+  } catch (error) {
+    res.status(400);
+    throw new Error("Invalid user data");
+  }
 })
-// login or authorise user
+// login or authorize user
 const loginUser = asyncHandler(async (req, res) => { 
     const { email, password } = req.body;
     const existingUser = await User.findOne({ email });
@@ -131,7 +131,7 @@ const deleteUserById = asyncHandler(async (req, res) => {
     }
 })
 // get user by id
-const getuserById = asyncHandler(async (req, res) => {
+const getUserById = asyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id).select("-password");
 
     if (user) {
@@ -166,4 +166,4 @@ const updateUserById = asyncHandler(async (req, res) => {
 
 
 
-export { registerUser , loginUser, logoutUser , deleteUserById, getAllUsers, getCurrentUserProfile, updateCurrentProfile, getuserById , updateUserById};
+export { registerUser , loginUser, logoutUser , deleteUserById, getAllUsers, getCurrentUserProfile, updateCurrentProfile, getUserById , updateUserById};
