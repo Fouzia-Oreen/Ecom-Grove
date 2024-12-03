@@ -9,16 +9,35 @@ import Login from './pages/auth/Login.jsx';
 import Register from './pages/auth/Register.jsx';
 import Profile from './pages/users/Profile.jsx';
 import store from './redux/store.js';
+import AdminRoutes from './pages/admin/AdminRoutes.jsx';
+import UserList from './pages/admin/UserList.jsx';
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />} >
+      <Route path='/login' element={<Login />} />
+      <Route path='/register' element={<Register />} />
+
+      {/* user updated routes */}
       <Route path="" element={<PrivateRoute />}>
        <Route path="/profile" element={<Profile />} />
       </Route>
-      <Route path='/login' element={<Login />} />
-      <Route path='/register' element={<Register />} />
+
+      {/* admin routes */}
+      <Route path="/admin" element={<AdminRoutes />}>
+       <Route path="userlist" element={<UserList />} />
+      {/*<Route path="categorylist" element={<CategoryList />} />
+      <Route path="productlist" element={<ProductList />} />
+      <Route path="allproductslist" element={<AllProducts />} />
+      <Route path="productlist/:pageNumber" element={<ProductList />} />
+      <Route path="product/update/:_id" element={<ProductUpdate />} />
+      <Route path="orderlist" element={<OrderList />} />
+      <Route path="dashboard" element={<AdminDashboard />} /> */}
+    </Route>
+
+
+
     </Route>
   
   /**
