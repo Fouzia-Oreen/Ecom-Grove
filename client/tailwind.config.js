@@ -1,8 +1,11 @@
+/* eslint-disable no-undef */
+import flowbite  from 'flowbite/plugin'
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
     './pages/**/*.{html,js}',
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend : {
@@ -23,7 +26,8 @@ export default {
         "color_6" : "#D7263d",
       }
     }
-  }
-
-  // ...
+  },
+  plugins: [
+    'flowbite/plugin'
+]
 }
