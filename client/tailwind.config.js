@@ -21,8 +21,8 @@ export default {
         "color_1" : "#f5f5f5",
         "color_2" : "#C0BFC2",
         "color_3" : "#abacad",
-        "color_4" : "#2e2e2e",
-        "color_5" : "#141414",
+        "color_4" : "#414141",
+        "color_5" : "#1e1e1e",
         "color_6" : "#D7263d",
       }
     }

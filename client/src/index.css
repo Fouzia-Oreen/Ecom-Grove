@@ -11,9 +11,10 @@
   --color_1 : #f5f5f5;
   --color_2 : #C0BFC2;
   --color_3 : #abacad;
-  --color_4 : #2e2e2e;
-  --color_5 : #141414;
+  --color_4 : #414141;
+  --color_5 : #1e1e1e;
   --color_6 : #D7263d;
+  --color_7 : #77121f;
 
 
   /* width */
@@ -25,6 +26,9 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+.container {
+  max-width: var(--max-width-1400);
 }
 /* sections */
 .section__container {
@@ -55,12 +59,22 @@ input, textarea {
 .add-btn {
   background-color: var(--color_4);
 }
+.add-btn:hover{
+  background-color: var(--color_6);
+}
+
+.submit-btn {
+  border: 1px solid var(--color_6);
+  color: var(--color_6)
+}
+.submit-btn:hover {
+  background-color: var(--color_6);
+  color: var(--color_1)
+}
+
 .auth-btn {
   background-color: var(--color_4);
 }
 .auth-btn:hover {
   background-color: var(--color_5);
-}
-.add-btn:hover{
-  background-color: var(--color_6);
 }

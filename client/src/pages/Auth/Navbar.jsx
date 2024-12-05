@@ -1,6 +1,7 @@
  
  
 import { useState } from "react";
+import logo from '../../assets/ecom-grove_logo.svg'
 import { AiOutlineLogin, AiOutlineUserAdd } from "react-icons/ai";
 import { CgMenuLeft } from "react-icons/cg";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
@@ -52,7 +53,7 @@ export const Navbar = () => {
     <nav  className="flex items-center justify-between py-5 border-b-[1px] border-color_2  md:px-12">
         {/* logo */}
         <Link to='/' className="flex gap-2 pl-4 items-center">
-        {/* <img src={logo} alt="logo" className="size-8"/> */}
+        <img src={logo} alt="logo" className="size-8"/>
         <span className="font-bold text-lg  hidden md:block text-color_6">Ecom Grove</span>
         </Link>
         {/* navlinks */}
@@ -163,7 +164,7 @@ export const Navbar = () => {
         {!userInfo && (
           <div className="md:flex gap-2 hidden ">
               <Link to="/login"><AiOutlineLogin className="text-color_4" size={20} /></Link>
-              <Link to="/register" > <AiOutlineUserAdd className="text-color_4" size={20} /></Link>           
+              <Link to="/register" ><AiOutlineUserAdd className="text-color_4" size={20} /></Link>           
           </div>
         )}
         </div>
@@ -196,5 +197,3 @@ export const Navbar = () => {
 
   )
 }
-
-{/* <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 0a8 8 0 1 0 8 8 8 8 0 0 0-8-8zm0 15a7 7 0 0 1-5.19-2.32 2.71 2.71 0 0 1 1.7-1 13.11 13.11 0 0 0 1.29-.28 2.32 2.32 0 0 0 .94-.34 1.17 1.17 0 0 0-.27-.7 3.61 3.61 0 0 1-1.32-2.87A3.18 3.18 0 0 1 8 4.07a3.18 3.18 0 0 1 2.86 3.42 3.6 3.6 0 0 1-1.32 2.88 1.13 1.13 0 0 0-.27.69 2.68 2.68 0 0 0 .93.31 10.81 10.81 0 0 0 1.28.23 2.63 2.63 0 0 1 1.78 1A7 7 0 0 1 8 15z"/></svg> */}

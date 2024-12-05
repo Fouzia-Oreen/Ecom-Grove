@@ -11,6 +11,7 @@ import Profile from './pages/users/Profile.jsx';
 import store from './redux/store.js';
 import AdminRoutes from './pages/admin/AdminRoutes.jsx';
 import UserList from './pages/admin/UserList.jsx';
+import CategoryList from './pages/admin/CategoryList.jsx';
 
 
 const router = createBrowserRouter(
@@ -27,8 +28,8 @@ const router = createBrowserRouter(
       {/* admin routes */}
       <Route path="/admin" element={<AdminRoutes />}>
        <Route path="userlist" element={<UserList />} />
-      {/*<Route path="categorylist" element={<CategoryList />} />
-      <Route path="productlist" element={<ProductList />} />
+      <Route path="categorylist" element={<CategoryList />} />
+      {/*<Route path="productlist" element={<ProductList />} />
       <Route path="allproductslist" element={<AllProducts />} />
       <Route path="productlist/:pageNumber" element={<ProductList />} />
       <Route path="product/update/:_id" element={<ProductUpdate />} />
