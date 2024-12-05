@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import userRoutes from './routes/userRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js'
+import productRoutes from "./routes/productRoutes.js";
 
 dotenv.config();
 
@@ -21,7 +22,7 @@ app.use(cookieParser());
 // Routes
 app.use('/api/users', userRoutes)
 app.use("/api/category", categoryRoutes);
-
+app.use("/api/products", productRoutes);
 
 // listening - port
 app.listen(PORT, () => {
