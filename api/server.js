@@ -7,9 +7,14 @@ import categoryRoutes from './routes/categoryRoutes.js';
 import productRoutes from "./routes/productRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import userRoutes from './routes/userRoutes.js';
+<<<<<<< HEAD
 
 
 
+=======
+import categoryRoutes from './routes/categoryRoutes.js'
+import productRoutes from "./routes/productRoutes.js";
+>>>>>>> 916457f0658e4dd323770c564363982bdfee1f26
 
 dotenv.config();
 
@@ -29,8 +34,11 @@ app.use(cookieParser());
 app.use('/api/users', userRoutes)
 app.use("/api/category", categoryRoutes);
 app.use("/api/products", productRoutes);
+<<<<<<< HEAD
 app.use("/api/upload", uploadRoutes);
 
+=======
+>>>>>>> 916457f0658e4dd323770c564363982bdfee1f26
 
 
 // default error handler for multer and others
