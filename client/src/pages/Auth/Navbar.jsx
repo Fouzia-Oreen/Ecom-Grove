@@ -22,7 +22,7 @@ const navlinks =[
 export const Navbar = () => {
   const {userInfo} = useSelector(state => state.auth)
   const [visible, setVisible] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen)
   }
@@ -39,7 +39,6 @@ export const Navbar = () => {
       console.error(error)
     }
   }
-
 
   return (
     <header className="flex flex-col mx-auto">
@@ -91,7 +90,7 @@ export const Navbar = () => {
         {dropdownOpen && userInfo && (
           <ul
             className={`absolute right-0 mt-2 mr-1 space-y-2 bg-color_2 border-[1px] border-color_3 ${
-              !userInfo.isAdmin ? "-right-2" : "-top-50"
+              !userInfo.isAdmin ? "-right-2" : "top-50"
             } `}
           >
             {userInfo.isAdmin && (

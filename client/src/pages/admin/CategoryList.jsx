@@ -91,7 +91,7 @@ const CategoryList = () => {
   };
 
   return (
-    <div className=" flex  section__container">
+    <div className=" flex  container">
       {/* <AdminMenu /> */}
       <SidebarMenu />
       <div className="md:w-3/4 p-3">
