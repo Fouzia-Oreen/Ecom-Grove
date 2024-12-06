@@ -65,14 +65,14 @@ export const Navbar = () => {
             ))
           }
         </div>
-        {/* cart & favourite */}
+        {/* cart & favorite */}
         <div className="flex gap-2">
         <div className="flex items-center gap-2">
         <Link to="/cart" className="flex items-center relative">
         <HiOutlineShoppingCart className="mr-3 text-color_4" size={22}/>
         <p className="absolute right-[5px] bottom-[15px] text-center bg-color_3  size-3.5 rounded-full text-[8px] font-semibold text-color_6">0</p>
         </Link>
-        <Link to="/favourite" className="flex items-center relative">
+        <Link to="/favorite" className="flex items-center relative">
         <IoMdHeartEmpty className="mr-2 text-color_4" size={22}/>
         <p className="absolute right-[2px] bottom-[15px] text-center bg-color_2  size-3.5 rounded-full text-[8px] font-semibold text-color_6">0</p>
         </Link>
@@ -89,9 +89,7 @@ export const Navbar = () => {
         </button>
         {dropdownOpen && userInfo && (
           <ul
-            className={`absolute right-0 mt-2 mr-1 space-y-2 bg-color_2 border-[1px] border-color_3 ${
-              !userInfo.isAdmin ? "-right-2" : "top-50"
-            } `}
+            className={`absolute right-0 mt-2 mr-1 space-y-2 bg-color_2 border-[1px] border-color_3 ${ !userInfo.isAdmin ? "-right-2" : "top-50" } `}
           >
             {userInfo.isAdmin && (
               <>
@@ -117,6 +115,14 @@ export const Navbar = () => {
                     className="block px-4 py-2 hover:bg-gray-100"
                   >
                     Category
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/admin/brandlist"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                  >
+                    Brands
                   </Link>
                 </li>
                 <li>
@@ -154,12 +160,12 @@ export const Navbar = () => {
           </ul>
         )}
         </div>
-        {/* smmall-view button */}
+        {/* small-view button */}
         <Link onClick={() => setVisible(true)} className="flex items-center md:hidden" >
         <CgMenuLeft className="text-color_5" size={22}/>
         </Link>
         </div>
-        {/* signin & signup credintials */}      
+        {/* signin & signup credentials */}      
         {!userInfo && (
           <div className="md:flex gap-2 hidden ">
               <Link to="/login"><AiOutlineLogin className="text-color_4" size={20} /></Link>
@@ -168,8 +174,8 @@ export const Navbar = () => {
         )}
         </div>
 
-        {/* open menu on small devices */}
-        <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-color_2 transition-all ${visible ? 'w-full z-10' : 'w-0'}`}>
+      {/* open menu on small devices */}
+      <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-color_2 transition-all ${visible ? 'w-full z-10' : 'w-0'}`}>
             <div className="flex flex-col ">
               <div className="flex items-center  gap-4 p-3 cursor-pointer" onClick={() => setVisible(false)}>
                 <p className="text-lg font-medium text-color_4">Back</p>
@@ -189,7 +195,7 @@ export const Navbar = () => {
               <Link to="/register" className="flex gap-2 btn auth-btn"><AiOutlineUserAdd  size={22} />Register</Link>
           </div>
         )}
-            </div>
+        </div>
         </div>
     </nav>
     </header>

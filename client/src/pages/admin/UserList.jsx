@@ -8,6 +8,7 @@ import {
   useUpdateUserMutation,
 } from "../../redux/api/userSlice";
 import { toast } from "react-toastify";
+import SidebarMenu from "./SidebarMenu";
 // ⚠️⚠️⚠️ don't forget this ⚠️⚠️⚠️⚠️
 // import AdminMenu from "./AdminMenu";
 
@@ -58,8 +59,9 @@ const UserList = () => {
   };
 
   return (
-    <div className="py-4 section__container">
+    <div className="py-4 ">
       <h1 className="text-3xl font-semibold mb-4">Users</h1>
+      <SidebarMenu />
       {isLoading ? (
         <Loader />
       ) : error ? (

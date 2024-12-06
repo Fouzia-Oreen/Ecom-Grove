@@ -52,7 +52,8 @@ export default function SidebarMenu() {
                   color: isActive ? "#D7263d" : "",
                 })}
               >
-                Dashboard
+              <BarChart3  className="mr-2  p-1.5 size-9 rounded-md bg-color_2 text-color_4 "  />
+               <p>Dashboard</p> 
               </NavLink>
             </li>
             <li className="flex p-3 mb-3 "  >
@@ -62,12 +63,27 @@ export default function SidebarMenu() {
                     flex  items-center  py-1  
                     overflow-hidden transition-all  font-semibold ${expanded ? "w-32 ml-3" : "w-0"}
                 `}
-                to="/admin/categorylist"
+                to="/admin/categoryList"
                 style={({ isActive }) => ({
                   color: isActive ? "#D7263d" : "",
                 })}
               >
                Create Category
+              </NavLink>
+            </li>
+            <li className="flex p-3 mb-3 "  >
+              <ListTodo  className="mr-2  p-1.5 size-9 rounded-md bg-color_2 text-color_4 "  />
+              <NavLink
+                className={`
+                    flex  items-center  py-1  
+                    overflow-hidden transition-all  font-semibold ${expanded ? "w-32 ml-3" : "w-0"}
+                `}
+                to="/admin/brandList"
+                style={({ isActive }) => ({
+                  color: isActive ? "#D7263d" : "",
+                })}
+              >
+               Create Brand
               </NavLink>
             </li>
             <li className="flex p-3 mb-3"  >
@@ -116,7 +132,7 @@ export default function SidebarMenu() {
               </NavLink>
             </li>
             <li className="flex p-3 mb-3"  >
-              <PiPackageBold  className="mr-2  p-1.5 size-9 rounded-md bg-color_2 text-color_4 "  />
+              <PiPackageBold  className="mr-2  p-1.5 size-9  rounded-md bg-color_2 text-color_4 "  />
               <NavLink
                 className={`
                     flex gap-2 items-center
