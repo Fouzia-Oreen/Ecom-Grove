@@ -18,13 +18,8 @@ const reviewSchema = mongoose.Schema(
 const productSchema = mongoose.Schema(
   {
     name: { type: String, required: true },
-<<<<<<< HEAD
-    // image: { type: String, required: true },
     image: { type: Array, required: true },
-=======
-    image: { type: String, required: true },
-    //image: { type: Array, required: true },
->>>>>>> 916457f0658e4dd323770c564363982bdfee1f26
+    // image: { type: String, required: true },
     brand: { type: String, required: true },
     quantity: { type: Number, required: true },
     category: { type: ObjectId, ref: "Category", required: true },
