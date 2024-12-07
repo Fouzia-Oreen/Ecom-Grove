@@ -12,6 +12,11 @@ import store from './redux/store.js';
 import AdminRoutes from './pages/admin/AdminRoutes.jsx';
 import UserList from './pages/admin/UserList.jsx';
 import CategoryList from './pages/admin/CategoryList.jsx';
+import ProductList from './pages/admin/ProductList.jsx';
+import BrandList from './pages/admin/BrandList.jsx';
+import SubCategoryList from './pages/admin/SubCategoryList.jsx';
+import UpdateProduct from './pages/admin/UpdateProduct.jsx';
+import AllProducts from './pages/admin/AllProducts.jsx';
 
 
 const router = createBrowserRouter(
@@ -29,9 +34,12 @@ const router = createBrowserRouter(
       <Route path="/admin" element={<AdminRoutes />}>
        <Route path="userlist" element={<UserList />} />
       <Route path="categorylist" element={<CategoryList />} />
-      {/*<Route path="productlist" element={<ProductList />} />
+      <Route path="brandlist" element={<BrandList />} />
+      <Route path="productlist" element={<ProductList />} />
+      <Route path="subcategorylist" element={<SubCategoryList />} />
+      <Route path="product/update/:_id" element={<UpdateProduct />} />
       <Route path="allproductslist" element={<AllProducts />} />
-      <Route path="productlist/:pageNumber" element={<ProductList />} />
+      {/*<Route path="productlist/:pageNumber" element={<ProductList />} />
       <Route path="product/update/:_id" element={<ProductUpdate />} />
       <Route path="orderlist" element={<OrderList />} />
       <Route path="dashboard" element={<AdminDashboard />} /> */}

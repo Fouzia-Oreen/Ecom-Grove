@@ -29,6 +29,7 @@
 }
 .container {
   max-width: var(--max-width-1400);
+  margin: 1rem auto;
 }
 /* sections */
 .section__container {
@@ -58,11 +59,12 @@ input, textarea {
 }
 .add-btn {
   background-color: var(--color_4);
+  border: 2px solid var(--color_4);
 }
 .add-btn:hover{
   background-color: var(--color_6);
+  border: 2px solid var(--color_6);
 }
-
 .submit-btn {
   border: 1px solid var(--color_6);
   color: var(--color_6)
@@ -74,7 +76,9 @@ input, textarea {
 
 .auth-btn {
   background-color: var(--color_4);
+  border: 2px solid var(--color_4);
 }
 .auth-btn:hover {
   background-color: var(--color_5);
+  border: 2px solid var(--color_5);
 }

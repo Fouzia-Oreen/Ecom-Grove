@@ -39,7 +39,7 @@ export default function SidebarMenu() {
           </button>
         </div>
         {/* menu-links */}
-        <ul className="list-none mt-8 ">
+        <ul className="list-none mt-8">
             <li className="flex p-3 mb-3"  >
               <BarChart3  className="mr-2  p-1.5 size-9 rounded-md bg-color_2 text-color_4 "  />
               <NavLink
@@ -52,8 +52,22 @@ export default function SidebarMenu() {
                   color: isActive ? "#D7263d" : "",
                 })}
               >
-              <BarChart3  className="mr-2  p-1.5 size-9 rounded-md bg-color_2 text-color_4 "  />
                <p>Dashboard</p> 
+              </NavLink>
+            </li>
+            <li className="flex p-3 mb-3 "  >
+              <ListTodo  className="mr-2  p-1.5 size-9 rounded-md bg-color_2 text-color_4 "  />
+              <NavLink
+                className={`
+                    flex  items-center  py-1 
+                    overflow-hidden transition-all  font-semibold ${expanded ? "w-32 ml-3" : "w-0"}
+                `}
+                to="/admin/categoryList"
+                style={({ isActive }) => ({
+                  color: isActive ? "#D7263d" : "",
+                })}
+              >
+               Add Category
               </NavLink>
             </li>
             <li className="flex p-3 mb-3 "  >
@@ -63,12 +77,12 @@ export default function SidebarMenu() {
                     flex  items-center  py-1  
                     overflow-hidden transition-all  font-semibold ${expanded ? "w-32 ml-3" : "w-0"}
                 `}
-                to="/admin/categoryList"
+                to="/admin/subcategoryList"
                 style={({ isActive }) => ({
                   color: isActive ? "#D7263d" : "",
                 })}
               >
-               Create Category
+               Add SubCategory
               </NavLink>
             </li>
             <li className="flex p-3 mb-3 "  >
@@ -83,7 +97,7 @@ export default function SidebarMenu() {
                   color: isActive ? "#D7263d" : "",
                 })}
               >
-               Create Brand
+               Add Brand
               </NavLink>
             </li>
             <li className="flex p-3 mb-3"  >
@@ -98,7 +112,7 @@ export default function SidebarMenu() {
                   color: isActive ? "#D7263d" : "",
                 })}
               >
-               Create Product
+               Add Product
               </NavLink>
             </li>
             <li className="flex p-3 mb-3"  >
