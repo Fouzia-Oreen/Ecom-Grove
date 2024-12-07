@@ -8,6 +8,7 @@ import productRoutes from "./routes/productRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import userRoutes from './routes/userRoutes.js';
 import brandRoutes from './routes/brandRoutes.js';
+import subCategoryRoutes from './routes/subCategoryRoutes.js';
 
 
 dotenv.config();
@@ -29,6 +30,8 @@ app.use('/api/users', userRoutes)
 app.use("/api/category", categoryRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/brand", brandRoutes);
+app.use("/api/subcategory", subCategoryRoutes);
+
 app.use("/api/upload", uploadRoutes);
 
 

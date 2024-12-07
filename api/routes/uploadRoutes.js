@@ -36,13 +36,7 @@ const upload = multer({
     }
 })
 
-router.post("/",  upload.fields([
-  { name:"image1", maxCount:1},
-  { name:"image2", maxCount:1},
-  { name:"image3", maxCount:1},
-  { name:"image4", maxCount:1},
-
-  ]), ( req, res) => {
+router.post("/",  upload.single("image"), ( req, res) => {
   res.status(200).send({message :"Image successfully uploaded"}) 
 })
 

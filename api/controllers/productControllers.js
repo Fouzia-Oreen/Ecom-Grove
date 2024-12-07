@@ -4,7 +4,7 @@ import Product from "../models/productModel.js";
 
 const addProduct = asyncHandler(async (req, res) => {
   try {
-    const { name, description, price, category, quantity, brand } = req.fields;
+    const { name, description, price, oldPrice, category, quantity, brand, subCategory } = req.fields;
 
     // Validation
     switch (true) {
@@ -15,9 +15,13 @@ const addProduct = asyncHandler(async (req, res) => {
       case !description:
         return res.json({ error: "Description is required" });
       case !price:
-        return res.json({ error: "Price is required" });
+      return res.json({ error: "Price is required" });
+      case !oldPrice:
+        return res.json({ error: "Old Price is required" });
       case !category:
         return res.json({ error: "Category is required" });
+        case !subCategory:
+          return res.json({ error: "Category is required" });
       case !quantity:
         return res.json({ error: "Quantity is required" });
     }
@@ -33,7 +37,7 @@ const addProduct = asyncHandler(async (req, res) => {
 
 const updateProductDetails = asyncHandler(async (req, res) => {
   try {
-    const { name, description, price, category, quantity, brand } = req.fields;
+    const { name, description, price, oldPrice, category, subCategory, quantity, brand } = req.fields;
 
     // Validation
     switch (true) {
@@ -42,11 +46,15 @@ const updateProductDetails = asyncHandler(async (req, res) => {
       case !brand:
         return res.json({ error: "Brand is required" });
       case !description:
-        return res.json({ error: "Description is required" });
-      case !price:
         return res.json({ error: "Price is required" });
+      case !price:
+        return res.json({ error: "Old Price is required" });
+        case !oldPrice:
+          return res.json({ error: "Old Price is required" });
       case !category:
         return res.json({ error: "Category is required" });
+        case !subCategory:
+          return res.json({ error: "SubCategory is required" });
       case !quantity:
         return res.json({ error: "Quantity is required" });
     }
@@ -201,6 +209,8 @@ const filterProducts = asyncHandler(async (req, res) => {
 
     let args = {};
     if (checked.length > 0) args.category = checked;
+    if (checked.length > 0) args.subCategory = checked;
+    if (checked.length > 0) args.brand = checked;
     if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
 
     const products = await Product.find(args);
