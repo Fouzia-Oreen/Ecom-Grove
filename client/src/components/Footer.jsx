@@ -3,8 +3,9 @@ import logo from '../assets/ecom-grove_logo.svg';
 import { AiFillInstagram, AiFillYoutube } from 'react-icons/ai';
 import { CgFacebook } from 'react-icons/cg';
 import { IoLogoTwitter } from 'react-icons/io';
+//import {footerLinks, footerInfo, footerStore, footerSocial} from "../assets/data"
 
-const links = [{
+const footerLinks = [{
     title: 'Quick Links',
     links: [
         { title: 'Home', link: '/' },
@@ -14,7 +15,7 @@ const links = [{
         { title: 'Contact', link: '/' },
     ]
 }]
-const info = [{
+const footerInfo = [{
     title: 'Help & Info',
     links: [
         { title: 'Track Your Order', link: '/' },
@@ -23,7 +24,7 @@ const info = [{
         { title: 'Find A Store', link: '/' },
     ]
 }]
-const store = [{
+const footerStore = [{
     title: 'Contact Us',
     links: [
         { title: '123 Main St, Anytown, CA 12345' },
@@ -31,7 +32,7 @@ const store = [{
         { title: 'Email: info@ecomgrove.com' }
     ]
 }]
-const social = [
+const footerSocial = [
     {icon: <CgFacebook />},
     {icon: <IoLogoTwitter />},
     {icon: <AiFillInstagram />},
@@ -59,11 +60,11 @@ const Footer = () => {
                 {/* links */}
                 <div>  
                     {
-                        links.map(item => (
+                        footerLinks.map(item => (
                             <h2 key={item.index} className='text-color_4 text-lg font-medium'>{item.title}</h2>
                         ))}
                         <ul className='flex flex-col'>
-                            {links.flatMap(item => item.links).map(link => (
+                            {footerLinks.flatMap(item => item.links).map(link => (
                                 <li key={link.link} className='text-gray-500 hover:text-gray-600 text-sm mt-2'><a href={link.link}>{link.title}</a></li>
                             ))}
                         </ul>   
@@ -71,11 +72,11 @@ const Footer = () => {
                 {/* info */}
                 <div> 
                     {
-                        info.map((infoItem, index) => (
+                        footerInfo.map((infoItem, index) => (
                             <h2 key={infoItem.index} className='text-color_4 text-lg font-medium'>{infoItem.title}</h2>
                         ))}
                         <ul className='flex flex-col'>
-                            {info.flatMap(infoItem => infoItem.links).map(linkItem => (
+                            {footerInfo.flatMap(infoItem => infoItem.links).map(linkItem => (
                                 <li key={linkItem.link} className='text-gray-500 hover:text-gray-600 text-sm mt-2'><a href={linkItem.link}>{linkItem.title}</a></li>
                             ))}
                         </ul>   
@@ -83,18 +84,18 @@ const Footer = () => {
                 {/* store */}
                 <div>
                     {
-                        store.map(storeItem => (
+                        footerStore.map(storeItem => (
                             <h2 key={storeItem.index} className='text-color_4 text-lg font-medium'>{storeItem.title}</h2>
                         ))}
                         <ul className='flex flex-col'>
-                            {store.flatMap(storeItem =>storeItem.links).map(link => (
+                            {footerStore.flatMap(storeItem =>storeItem.links).map(link => (
                                 <li key={link.link} className='text-gray-500 hover:text-gray-600 text-sm mt-2'><a href={link.link}>{link.title}</a></li>
                             ))}
                         </ul>
                     {/* social - icons */}
                     <div className='flex gap-4 mt-4'>
                         {
-                            social.map(icon => (
+                            footerSocial.map(icon => (
                                 <a key={icon.icon} href="" className='text-color_4 cursor-pointer hover:text-color_6 text-lg'>{icon.icon}</a>
                             ))
                         }
