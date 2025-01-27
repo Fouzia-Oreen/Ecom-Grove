@@ -4,9 +4,9 @@ import Product from "../models/productModel.js";
 
 const addProduct = asyncHandler(async (req, res) => {
   try {
-    const { name, description, price, oldPrice, category, quantity, brand, subCategory } = req.fields;
+    const { name, description, price, category, quantity, brand, subCategory } = req.fields;
 
-    // Validation
+   // Validation
     switch (true) {
       case !name:
         return res.json({ error: "Name is required" });
@@ -16,8 +16,6 @@ const addProduct = asyncHandler(async (req, res) => {
         return res.json({ error: "Description is required" });
       case !price:
       return res.json({ error: "Price is required" });
-      case !oldPrice:
-        return res.json({ error: "Old Price is required" });
       case !category:
         return res.json({ error: "Category is required" });
         case !subCategory:
@@ -35,9 +33,9 @@ const addProduct = asyncHandler(async (req, res) => {
   }
 });
 
-const updateProductDetails = asyncHandler(async (req, res) => {
+const updateProduct = asyncHandler(async (req, res) => {
   try {
-    const { name, description, price, oldPrice, category, subCategory, quantity, brand } = req.fields;
+    const { name, description, price, category, subCategory, quantity, brand } = req.fields;
 
     // Validation
     switch (true) {
@@ -49,8 +47,6 @@ const updateProductDetails = asyncHandler(async (req, res) => {
         return res.json({ error: "Price is required" });
       case !price:
         return res.json({ error: "Old Price is required" });
-        case !oldPrice:
-          return res.json({ error: "Old Price is required" });
       case !category:
         return res.json({ error: "Category is required" });
         case !subCategory:
@@ -84,8 +80,10 @@ const removeProduct = asyncHandler(async (req, res) => {
   }
 });
 
+// fetch 6 products
 const fetchProducts = asyncHandler(async (req, res) => {
   try {
+    // change the page size to increase the no. of product fetched
     const pageSize = 6;
 
     const keyword = req.query.keyword
@@ -112,6 +110,7 @@ const fetchProducts = asyncHandler(async (req, res) => {
   }
 });
 
+// fetch a single product
 const fetchProductById = asyncHandler(async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -126,11 +125,11 @@ const fetchProductById = asyncHandler(async (req, res) => {
     res.status(404).json({ error: "Product not found" });
   }
 });
-
+// fetch all the products based on brand, category, subcategory
 const fetchAllProducts = asyncHandler(async (req, res) => {
   try {
     const products = await Product.find({})
-      .populate("category")
+      .populate("category", "name -_id").populate("brand", "name -_id").populate("subCategory", "name -_id")
       .limit(12)
       .sort({ createAt: -1 });
 
@@ -164,7 +163,6 @@ const addProductReview = asyncHandler(async (req, res) => {
       };
 
       product.reviews.push(review);
-
       product.numReviews = product.reviews.length;
 
       product.rating =
@@ -182,27 +180,27 @@ const addProductReview = asyncHandler(async (req, res) => {
     res.status(400).json(error.message);
   }
 });
-
+// fetch top products with rating
 const fetchTopProducts = asyncHandler(async (req, res) => {
   try {
-    const products = await Product.find({}).sort({ rating: -1 }).limit(4);
+    const products = await Product.find({}).sort({ rating: -1 }).limit(8);
     res.json(products);
   } catch (error) {
     console.error(error);
     res.status(400).json(error.message);
   }
 });
-
+// recently added or the newest products
 const fetchNewProducts = asyncHandler(async (req, res) => {
   try {
-    const products = await Product.find().sort({ _id: -1 }).limit(5);
+    const products = await Product.find().sort({ _id: -1 }).limit(12);
     res.json(products);
   } catch (error) {
     console.error(error);
     res.status(400).json(error.message);
   }
 });
-
+// filter the products by category, subcategory, brand
 const filterProducts = asyncHandler(async (req, res) => {
   try {
     const { checked, radio } = req.body;
@@ -221,15 +219,8 @@ const filterProducts = asyncHandler(async (req, res) => {
   }
 });
 
+
+
 export {
-  addProduct,
-  updateProductDetails,
-  removeProduct,
-  fetchProducts,
-  fetchProductById,
-  fetchAllProducts,
-  addProductReview,
-  fetchTopProducts,
-  fetchNewProducts,
-  filterProducts,
+  addProduct, addProductReview, fetchAllProducts, fetchNewProducts, fetchProductById, fetchProducts, fetchTopProducts, filterProducts, removeProduct, updateProduct
 };

@@ -20,7 +20,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   try {
     await newUser.save();
-    createToken(res, newUser._id);
+    generateToken(res, newUser._id);
 
     res.status(201).json({
       _id: newUser._id,
@@ -60,7 +60,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // logout user
 const logoutUser = asyncHandler(async (req, res) => {
     res.cookie("jwt", "", {
-        httyOnly: true,
+        httpOnly: true,
         expires: new Date(0),
       });
     
@@ -93,7 +93,14 @@ const updateCurrentProfile = asyncHandler(async (req, res) => {
     if (user) {
       user.username = req.body.username || user.username;
       user.email = req.body.email || user.email;
-  
+      user.address = req.body.address || user.address;
+      user.state = req.body.state || user.state;
+      user.city = req.body.city || user.city;
+      user.zipCode = req.body.zipCode || user.zipCode;
+      user.password = req.body.password || user.password;
+      user.phone = req.body.phone || user.phone;
+
+
       if (req.body.password) {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
@@ -106,6 +113,11 @@ const updateCurrentProfile = asyncHandler(async (req, res) => {
         _id: updatedUser._id,
         username: updatedUser.username,
         email: updatedUser.email,
+        address: updatedUser.address,
+        city: updatedUser.city,
+        state: updatedUser.state,
+        zipCode: updatedUser.zipCode,
+        phone: updatedUser.phone,
         isAdmin: updatedUser.isAdmin,
       });
     } else {
@@ -113,6 +125,7 @@ const updateCurrentProfile = asyncHandler(async (req, res) => {
       throw new Error("User not found");
     }
 })
+/* Admin authorized */
 // delete user by id
 const deleteUserById = asyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id);
