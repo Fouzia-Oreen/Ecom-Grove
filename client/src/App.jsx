@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Navbar } from './pages/auth/Navbar';
+import Footer from './components/Footer';
 
 
 
@@ -11,9 +12,10 @@ function App() {
     <>
     <ToastContainer />
     <Navbar />
-      <main className='py-3'>
+      <main>
         <Outlet />
       </main>
+      <Footer />
     </>
   )
 }
