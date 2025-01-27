@@ -19,13 +19,8 @@ router
   .post(registerUser)
   .get(authenticate, authorizeAdmin, getAllUsers);
 
-// register
-// router.post(("/register"), registerUser);
-// login 
 router.post(("/login"), loginUser);
-// logout 
 router.post(("/logout"), logoutUser);
-
 
 // get the current profile & update it by admin
 router
