@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
 import moment from "moment";
+import { Link } from "react-router-dom";
+import Title from "../../components/Title";
 import { useAllProductsQuery } from "../../redux/api/productSlice";
 import SidebarMenu from "./SidebarMenu";
 
@@ -16,64 +17,72 @@ const AllProducts = () => {
 
   return (
     <>
-      <div className="container flex">
-        
-        {/* menu */}
-        <div className="md:w-1/4 p-3 mt-2">
-            <SidebarMenu />
-        </div>
-         
-          <div className="m-3">
-            <h1 className="text-xl mb-6 font-medium">All Products ({products.length})</h1> 
-            <div className="flex flex-wrap  items-center">
-              {products.map((product) => (
-                <Link
-                  key={product._id}
-                  to={`/admin/product/update/${product._id}`}
-                  className=" mb-6 overflow-hidden w-full border-b-[1px] border-color_2 p-1"
-                >
-                  <div className="flex  flex-col md:flex-row  justify-between md:gap-20">
-                    <div className="">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="size-24 md:size-40 object-cover border-[1px] border-color_2 border-opacity-70 rounded-md"
-                    />
-                    </div>
-                    <div className="flex  flex-1 justify-between">
-                    <div className="flex flex-col justify-between py-2">
-                    <div>
-                    <h5 className="text-xl font-semibold mb-2">
-                          {product?.name}
-                    </h5>
-                    <p className="text-color_3 text-xs">
-                          {moment(product.createdAt).format("MMMM Do YYYY")}
-                    </p>
-                    </div>
-                    <Link
-                          to={`/admin/product/update/${product._id}`}
-                          className="px-4 py-1 bg-color_3 w-fit rounded-full mt-4 font-medium hover:bg-color_4 hover:text-color_1 transition-colors duration-300"
-                        >
-                          Update Product
-                    </Link>
-                    </div>
-
-                    <div className="flex flex-col justify-between py-6 text-end">
-                    <p className="text-color_3 text-xs">
-                          {moment(product.createdAt).format("MMMM Do YYYY")}
-                    </p> 
-                    <p className="font-medium text-xl">$ {product?.price}</p>
-                    </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        
+    <div className="flex lg:items-center lg:justify-center">
+      <SidebarMenu />
+      <div className=" md:px-12 lg:w-[1400px]">
+      <div className=" grid grid-cols-2 items-center justify-between">
+      <div className="ml-6">
+      <Title text1={"All"} text2={"Products"}/>
       </div>
+      <p className=" text-sm font-medium text-end text-color_6">Total Products : ({products.length})</p>
+      </div>
+
+      {/* Your admin dashboard content goes here */}
+      <div className="">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-14">
+      {products.map((product) => (
+        <Link
+          key={product._id}
+          to={`/admin/product/update/${product._id}`}
+          className=" overflow-hidden w-full  p-1 border-b border-color_4/40"
+        >
+        <div className=" md:flex-row flex gap-4 flex-col md:gap-6 justify-between">
+        <div className="flex gap-4 items-center">
+        {/* image */}
+        <div className=" border-color_2 border-opacity-70 mt-1  border rounded placeholder-color_3 border-color_4/30 ">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="h-20 w-20 object-cover p-[2px]"
+        />
+        </div>
+        {/* name & desc... */}
+        <div className="flex flex-col gap-2 ">
+        <h5 className=" font-semibold">
+              {product?.name?.substring(0, 20)}....
+        </h5>
+        <p className="text-neutral-500 text-xs">
+              {product?.description?.substring(0, 50)}...
+        </p>       
+        </div>
+        </div>
+        <div className="flex md:flex-col justify-between">
+          <div>
+          <p className="text-neutral-500 text-xs">
+                {moment(product.createdAt).format("MMMM Do YYYY")}
+          </p>
+          <p className="font-medium ">$ {product?.price}</p>
+          </div>
+        <Link
+              to={`/admin/product/update/${product._id}`}
+              className="text-sm px-4 py-1 bg-color_3 w-fit rounded-full  font-medium hover:bg-color_4 hover:text-color_1 transition-colors duration-300 mt-3"
+            >
+              Update 
+        </Link>
+        </div>
+        </div>      
+        </Link>
+      ))}
+      </div>
+    </div>
+    </div>
+    </div>
+   
     </>
   );
 };
 
 export default AllProducts;
+
+
+

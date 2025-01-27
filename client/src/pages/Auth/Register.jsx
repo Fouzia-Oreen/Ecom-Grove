@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
-// import { useRegisterMutation } from "../../redux/api/usersSlice";
 import { useRegisterMutation } from "../../redux/api/userSlice";
 
 import { setCredentials } from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
-//import image from '../../assets/auth.png'
+import Title from "../../components/Title";
+import Input from "../../components/Input";
+import image from '../../assets/auth.png'
 
 const Register = () => {
   const [username, setName] = useState("");
@@ -52,209 +53,84 @@ const Register = () => {
 
   
   return (
-  //    <div>
-  //    <section className="section__container flex flex-col md:flex-row flex-wrap  gap-6">
-  //      <div className="md:mt-[5rem] flex-1 mb-4">
-  //        <h1 className="text-3xl font-semibold mb-4">Sign Up</h1>
-  //        <form onSubmit={submitHandler} className="max-w-[30rem] ">
-  //        <div className="my-[2rem]">
-  //            <label
-  //              htmlFor="name"
-  //              className="block text-sm font-medium text-color_4"
-  //            >
-  //              Full Name
-  //            </label>
-  //            <input
-  //              type="name"
-  //              id="name"
-  //              className="mt-1 p-2 border rounded w-full"
-  //              placeholder="Enter name"
-  //              value={name}
-  //              onChange={(e) => setName(e.target.value)}
-  //            />
-  //          </div>
-  //          <div className="my-[2rem]">
-  //            <label
-  //              htmlFor="email"
-  //              className="block text-sm font-medium text-color_4"
-  //            >
-  //              Email Address
-  //            </label>
-  //            <input
-  //              type="email"
-  //              id="email"
-  //              className="mt-1 p-2 border rounded w-full"
-  //              placeholder="Enter email"
-  //              value={email}
-  //              onChange={(e) => setEmail(e.target.value)}
-  //            />
-  //          </div>
-  //          <div className="my-[2rem]">
-  //          <label
-  //              htmlFor="password"
-  //              className="block text-sm font-medium text-color_4"
-  //            >
-  //              Password
-  //            </label>
-  //            <input
-  //              type="password"
-  //              id="password"
-  //              className="mt-1 p-2 border rounded w-full"
-  //              placeholder="Enter password"
-  //              value={password}
-  //              onChange={(e) => setPassword(e.target.value)}
-  //            />
-  //          </div>
-  //          <div className="mb-4">
-  //            <label
-  //              htmlFor="confirmPassword"
-  //              className="block text-sm font-medium text-color_4"
-  //            >
-  //              Confirm password
-  //            </label>
-  //            <input
-  //              type="password"
-  //              id="confirmPassword"
-  //              className="mt-1 p-2 border rounded w-full"
-  //              placeholder="Confirm password"
-  //              value={confirmPassword}
-  //              onChange={(e) => setConfirmPassword(e.target.value)}
-  //            />
-  //          </div>
-  //         {/* submit button */}
-  //          <button
-  //            disabled={isLoading}
-  //            type="submit"
-  //            className="btn auth-btn my-[1rem]"
-  //          >
-  //            {isLoading ? "Signing Up..." : "Sign Up"}
-  //          </button>
-  //          {isLoading && <Loader />}
-  //        </form>
-  //         {/* point to register */}
-  //          <p className="text-color_5 mt-2">
-  //            New Customer?{" "}
-  //            <Link
-  //              to={redirect ? `/login?redirect=${redirect}` : "/login"}
-  //              className="text-color_6 font-semibold italic hover:underline ml-2 "
-  //            >
-  //             Login
-  //            </Link>
-  //          </p> 
-  //      </div>
-  //      {/* image */}
-  //      <div className='md:mt-[5rem] flex-1 mt-4'>
-  //      <img
-  //        src={image}
-  //        alt=""
-  //        className=""
-  //      />
-  //      </div>
-
-  //    </section>
-  //  </div>
-  <section className="pl-[10rem] flex flex-wrap">
-      <div className="mr-[4rem] mt-[5rem]">
-        <h1 className="text-2xl font-semibold mb-4">Register</h1>
-
-        <form onSubmit={submitHandler} className="container w-[40rem]">
+  <section className="container grid grid-cols-1 md:grid-cols-2 p-2 gap-40 ">
+      <div className="flex-1 ">
+        <div className="lg:ml-[6rem] ">
+        <Title text1={"Register"} text2={"Now"}/>
+        </div>
+        <form onSubmit={submitHandler} className="container  w-full lg:w-[450px]">
           <div className="my-[2rem]">
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-white"
-            >
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              className="mt-1 p-2 border rounded w-full"
-              placeholder="Enter name"
-              value={username}
-              onChange={(e) => setName(e.target.value)}
-            />
+              <label
+                htmlFor="name"
+                className="block font-medium text-color_4/80"
+              >
+                Name
+              </label>
+              <Input id="name" type="text" placeholder="Enter your name ...." onChange={(e) => setName(e.target.value)} value={username} />
           </div>
 
           <div className="my-[2rem]">
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-white"
+              className="block font-medium text-color_4/80"
             >
               Email Address
             </label>
-            <input
-              type="email"
-              id="email"
-              className="mt-1 p-2 border rounded w-full"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <Input id="email" type="email" placeholder="Enter your email ...." onChange={(e) => setEmail(e.target.value)} value={email} />
           </div>
 
           <div className="my-[2rem]">
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-white"
+              className="block font-medium text-color_4/80 "
             >
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              className="mt-1 p-2 border rounded w-full"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <Input id="password" type="password" placeholder="Enter your password ...." onChange={(e) => setPassword(e.target.value)} value={password} />
           </div>
 
           <div className="my-[2rem]">
             <label
               htmlFor="confirmPassword"
-              className="block text-sm font-medium text-white"
+              className="block font-medium text-color_4/80 "
             >
               Confirm Password
             </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              className="mt-1 p-2 border rounded w-full"
-              placeholder="Confirm password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
+            <Input id="confirmPassword" type="password" placeholder="Enter your confirm password ...." onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} />
           </div>
 
           <button
             disabled={isLoading}
             type="submit"
-            className="bg-pink-500 text-white px-4 py-2 rounded cursor-pointer my-[1rem]"
+            className="auth-btn btn cursor-pointer]"
           >
-            {isLoading ? "Registering..." : "Register"}
+            {/* {isLoading ? "Registering..." : "Register"} */}
+            {isLoading ? <Loader /> : "Register"}
           </button>
-
-          {isLoading && <Loader />}
-        </form>
-
-        <div className="mt-4">
-          <p className="text-white">
+          <div className="mt-4">
+          <p className="">
             Already have an account?{" "}
             <Link
               to={redirect ? `/login?redirect=${redirect}` : "/login"}
-              className="text-pink-500 hover:underline"
+              className="text-color_6 font-semibold italic hover:underline"
             >
-              Login
+             {" "} Login
             </Link>
           </p>
         </div>
+
+          {/* {isLoading && <Loader />} */}
+        </form>
       </div>
-      <img
-        src="https://images.unsplash.com/photo-1576502200916-3808e07386a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2065&q=80"
-        alt=""
-        className="h-[65rem] w-[59%] xl:block md:hidden sm:hidden rounded-lg"
-      />
-    </section>
+       {/* image */}
+       <div className='md:mt-[5rem] flex-1 mt-4'>
+       <img
+         src={image}
+         alt=""
+         className=""
+       />
+       </div>
+  </section>
   )
 }
 

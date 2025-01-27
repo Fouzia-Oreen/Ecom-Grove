@@ -1,15 +1,15 @@
 import { useState } from "react";
 import {
-    useCreateSubCategoryMutation,
-    useUpdateSubCategoryMutation,
-    useDeleteSubCategoryMutation,
-    useFetchSubCategoriesQuery,
+  useCreateSubCategoryMutation,
+  useDeleteSubCategoryMutation,
+  useFetchSubCategoriesQuery,
+  useUpdateSubCategoryMutation,
 } from "../../redux/api/subCategorySlice";
-
 import { toast } from "react-toastify";
-import SubCategoryForm from "../../components/SubCategoryForm";
 import Modal from "../../components/Modal";
+import SubCategoryForm from "../../components/SubCategoryForm";
 import SidebarMenu from "./SidebarMenu";
+import Title from "../../components/Title";
 
 const SubCategoryList = () => {
   const { data: subCategories } = useFetchSubCategoriesQuery();
@@ -91,24 +91,28 @@ const SubCategoryList = () => {
   };
 
   return (
-    <div className=" flex  container">
-      {/* <AdminMenu /> */}
+
+    <div className="flex lg:justify-center">
+      {/* sidebar - menu */}
       <SidebarMenu />
-      <div className="md:w-3/4 p-3">
-         <h1 className="text-2xl px-2 font-semibold">Manage SubCategories</h1> 
-        <SubCategoryForm
+      <div className="md:py-8 md:px-12 lg:w-[1400px] ">
+      <div className="ml-6">
+      <Title text1={"Manage"} text2={"SubCategories"}/>
+      </div>
+        {/* Your admin dashboard content goes here */}
+        <div className="">
+        <div className="ml-2">
+          <SubCategoryForm
           value={name}
           setValue={setName}
           handleSubmit={handleCreateSubCategory}
         />
-        <br />
-        <hr />
-
+        <hr className="mt-4 bg-color_2 w-full h-[1px]" />
         <div className="flex flex-wrap ">
-          {subCategories?.map((subCategory) => (
+           {subCategories?.map((subCategory) => (
             <div key={subCategory._id}>
               <button
-                className="submit-btn btn m-2"
+                className="bg-color_2 px-3 py-1 rounded-full m-2 hover:bg-color_6 hover:text-color_1"
                 onClick={() => {
                   {
                     setModalVisible(true);
@@ -117,7 +121,7 @@ const SubCategoryList = () => {
                   }
                 }}
               >
-                {subCategory.name}
+                {subCategory.name} 
               </button>
             </div>
           ))}
@@ -132,8 +136,11 @@ const SubCategoryList = () => {
             handleDelete={handleDeleteSubCategory}
           />
         </Modal>
+        </div>
       </div>
-    </div>
+    </div>       
+
+       </div>
   );
 };
 

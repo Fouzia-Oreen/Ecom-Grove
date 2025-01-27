@@ -1,15 +1,15 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+import Modal from "../../components/Modal";
 import {
   useCreateCategoryMutation,
   useDeleteCategoryMutation,
   useFetchCategoriesQuery,
   useUpdateCategoryMutation,
 } from "../../redux/api/categorySlice";
-
-import { toast } from "react-toastify";
-import CategoryForm from "../../components/CategoryForm";
-import Modal from "../../components/Modal";
 import SidebarMenu from "./SidebarMenu";
+import CategoryForm from "../../components/CategoryForm";
+import Title from "../../components/Title";
 
 const CategoryList = () => {
   const { data: categories } = useFetchCategoriesQuery();
@@ -91,24 +91,26 @@ const CategoryList = () => {
   };
 
   return (
-    <div className=" flex  container">
-      {/* <AdminMenu /> */}
-      <SidebarMenu />
-      <div className="md:w-3/4 p-3">
-         <h1 className="text-2xl px-2 font-semibold">Manage Categories</h1> 
-        <CategoryForm
+    <div className="flex lg:justify-center">
+    {/* sidebar - menu */}
+    <SidebarMenu />
+    <div className="md:py-8 md:px-12 lg:w-[1400px]">
+    <div className="ml-6">
+    <Title text1={"Create"} text2={"Category"}/>
+    </div>
+      {/* Your admin dashboard content goes here */}
+      <div className="ml-2">
+          <CategoryForm
           value={name}
           setValue={setName}
           handleSubmit={handleCreateCategory}
         />
-        <br />
-        <hr />
-
+        <hr className="mt-4 w-full h-[1px]"/>
         <div className="flex flex-wrap ">
           {categories?.map((category) => (
             <div key={category._id}>
               <button
-                className="submit-btn btn m-2"
+                className="bg-color_2 px-3 py-1 rounded-full m-2 hover:bg-color_6 hover:text-color_1"
                 onClick={() => {
                   {
                     setModalVisible(true);
@@ -134,6 +136,7 @@ const CategoryList = () => {
         </Modal>
       </div>
     </div>
+  </div>
   );
 };
 

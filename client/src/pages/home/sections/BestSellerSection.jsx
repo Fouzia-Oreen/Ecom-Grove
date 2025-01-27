@@ -1,12 +1,12 @@
-import { slides } from '../../assets/data'
-import Carousel from '../../components/Carousel'
-import Title from '../../components/Title'
+import { slides } from '../../../assets/data'
+import Carousel from '../../../components/Carousel'
+import Title from '../../../components/Title'
 
 const BestSellerSection = () => {
   return (
     <>
         {/* bestseller - product - section */}
-        <div className="container flex flex-col my-4 overflow-hidden md:p-4 p-2">
+        <div className="container flex flex-col my-4 lg: overflow-hidden md:p-4 p-2">
             <Title text1={"Bestseller"} text2={"Product"} />
             <div className="grid gap-6 md:grid-cols-2 mx-12 items-center">
               <div className="max-w-lg">

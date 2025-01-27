@@ -1,15 +1,15 @@
 import { useState } from "react";
 import {
-    useCreateBrandMutation,
-    useDeleteBrandMutation,
-    useFetchBrandsQuery,
-    useUpdateBrandMutation,
+  useCreateBrandMutation,
+  useDeleteBrandMutation,
+  useFetchBrandsQuery,
+  useUpdateBrandMutation,
 } from "../../redux/api/brandSlice";
-
 import { toast } from "react-toastify";
-import BrandForm from "../../components/BrandForm";
+import BrandForm from "../../components/BrandFrom";
 import Modal from "../../components/Modal";
 import SidebarMenu from "./SidebarMenu";
+import Title from "../../components/Title";
 
 const BrandList = () => {
   const { data: brands } = useFetchBrandsQuery();
@@ -91,11 +91,13 @@ const BrandList = () => {
   };
 
   return (
-    <div className=" flex  container">
+    <div className=" flex  lg:justify-center">
       {/* <AdminMenu /> */}
       <SidebarMenu />
-      <div className="md:w-3/4 p-3">
-         <h1 className="text-2xl px-2 font-semibold">Manage Brands</h1> 
+      <div className="md:py-8 md:px-12 lg:w-[1400px]">
+      <div className="ml-6">
+      <Title text1={"Manage"} text2={"Brands"}/>
+      </div>
         <BrandForm
           value={name}
           setValue={setName}
@@ -108,7 +110,7 @@ const BrandList = () => {
           {brands?.map((brand) => (
             <div key={brand._id}>
               <button
-                className="submit-btn btn m-2"
+                className="bg-color_2 px-3 py-1 rounded-full m-2 hover:bg-color_6 hover:text-color_1"
                 onClick={() => {
                   {
                     setModalVisible(true);

@@ -1,31 +1,32 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Input from "../../components/Input";
+import Title from "../../components/Title";
+import { useFetchBrandsQuery } from "../../redux/api/brandSlice";
+import { useFetchCategoriesQuery } from "../../redux/api/categorySlice";
 import {
   useCreateProductMutation,
   useUploadProductImageMutation,
 } from "../../redux/api/productSlice";
-import { useFetchCategoriesQuery } from "../../redux/api/categorySlice";
 import { useFetchSubCategoriesQuery } from "../../redux/api/subCategorySlice";
-import { useFetchBrandsQuery } from "../../redux/api/brandSlice";
-
-import { toast } from "react-toastify";
 import SidebarMenu from "./SidebarMenu";
 
 
-const ProductList = () => {
+const AddProduct = () => {
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [oldPrice, setOldPrice] = useState("");
-  const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
+  const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState("");
   const [brand, setBrand] = useState("");
   const [stock, setStock] = useState(0);
   const [imageUrl, setImageUrl] = useState(null);
-
   const navigate = useNavigate();
+
   const [uploadProductImage] = useUploadProductImageMutation();
   const [createProduct] = useCreateProductMutation();
   const { data: categories } = useFetchCategoriesQuery();
@@ -49,7 +50,7 @@ const ProductList = () => {
       productData.append("countInStock", stock);
 
       const { data } = await createProduct(productData);
-
+      console.log(data)
       if (data.error) {
         toast.error("Product create failed. Try Again.");
       } else {
@@ -65,11 +66,13 @@ const ProductList = () => {
   const uploadFileHandler = async (e) => {
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
+    console.log(formData)
 
     try {
       const res = await uploadProductImage(formData).unwrap();
+      console.log(res)
       toast.success(res.message);
-      setImage(res.image1)
+      setImage(res.image)
       setImageUrl(res.image);
     } catch (error) {
       toast.error(error?.data?.message || error.error);
@@ -77,13 +80,15 @@ const ProductList = () => {
   };
 
   return (
-    <div className="container">
-      <div className="flex ">
-        <SidebarMenu />
-        <div className="md:w-3/4 p-3">
-        <h1 className="text-2xl px-2 font-semibold mb-4">Add Product</h1> 
-
-        {imageUrl && (
+    <div className="flex lg:items-center lg:justify-center">
+    {/* sidebar - menu */}
+    <SidebarMenu />
+    <div className=" md:py-8 md:px-12 lg:w-[1400px]">    
+      <div className="ml-6">
+      <Title text1={"Add"} text2={"Product"}/>
+      </div>
+      {/* if you have an image it will show on the imageUrl */}
+      {imageUrl && (
             <div className="text-center">
               <img
                 src={imageUrl}
@@ -91,70 +96,62 @@ const ProductList = () => {
                 className="block mx-auto max-h-[200px]"
               />
             </div>
-          )}
-        {/* images */}
+      )}
         <div className="m-3">
-            <label className="border-[1px] border-color_3 text-color_6 px-4 block w-full text-center rounded-md cursor-pointer font-bold py-11">
-              {image ? image.name : "Upload Image"}
-
-              <input
-                type="file"
-                name="image"
-                accept="image/*"
-                onChange={uploadFileHandler}
-                className={!image ? "hidden" : "text-color_6"}
-              />
-            </label>
+          <label className="text-color_6 px-4 block w-full text-center rounded-md cursor-pointer font-bold py-11 mt-1 p-3 border placeholder-color_3 border-color_4/30">
+          {image ? image.name : "Upload Image"}
+          <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={uploadFileHandler}
+              className={!image ? "hidden" : "text-color_6"}
+            />
+          </label>
         </div>
-
-        {/* details */}
-        <div className="m-3">
-          <div className="flex flex-wrap">
-            {/* name */}
-            <div className="flex flex-col w-full">
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                className="p-4 mb-3 rounded-md "
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
+         {/* details */}
+         <div className="m-3">
+           <div className="flex flex-wrap">
+             {/* name */}
+             <div className="flex flex-col w-full my-6">
+               <label htmlFor="name" className="font-semibold text-color_4">Name</label>
+               <Input type="text" value={name} onChange={(e) => setName(e.target.value)}/>
             </div>
             {/* description */}
-            <div className="flex flex-col w-full">
-              <label htmlFor="desc">
+            <div className="flex flex-col w-full mb-6">
+              <label htmlFor="desc" className="font-semibold text-color_4">
               Description
               </label>
               <textarea
                 type="text"
-                className="p-2 mb-3  rounded-md w-full "
+                className="mt-1 p-3 border rounded w-full placeholder-color_3 border-color_4/30"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
             </div>
             {/* brand & category */}
-            <div className="flex flex-col gap-4 items-center md:gap-12 md:flex-row w-full">
+            <div className="flex flex-col gap-4 items-center md:gap-12 md:flex-row w-full mb-4">
             {/* brand */}
-            <div className="flex flex-col w-full">
-              <label htmlFor="">Brand</label>
+            <div className="flex flex-col w-full mb-4">
+              <label htmlFor="" className="font-semibold text-color_4">Brand</label>
               <select
                 placeholder="Choose Brand"
-                className="p-4 mb-3 rounded-md border-[1px] border-color_3 focus:outline-none"
+                className="mt-1 p-3 border rounded w-full placeholder-color_3 border-color_4/30 cursor-pointer"
                 onChange={(e) => setBrand(e.target.value)}
               >
-                {brands?.map((c) => (
-                  <option key={c._id} value={c._id}>
-                    {c.name}
+                {brands?.map((b) => (
+                  <option key={b._id} value={b._id}>
+                    {b.name}
                   </option>
                 ))}
               </select>
             </div>
             {/* category */}
-            <div className="flex flex-col w-full">
-              <label htmlFor="">Category</label>
+            <div className="flex flex-col w-full mb-4">
+              <label htmlFor="" className="font-semibold text-color_4">Category</label>
               <select
                 placeholder="Choose Category"
-                className="p-4 mb-3 rounded-md border-[1px] border-color_3 focus:outline-none"
+                className="mt-1 p-3 border rounded w-full placeholder-color_3 border-color_4/30 cursor-pointer"
                 onChange={(e) => setCategory(e.target.value)}
               >
                 {categories?.map((c) => (
@@ -165,67 +162,45 @@ const ProductList = () => {
               </select>
             </div>
             {/* sub category */}
-            <div className="flex flex-col w-full">
-              <label htmlFor="">Sub Category</label>
+            <div className="flex flex-col w-full mb-4">
+              <label htmlFor="" className="font-semibold text-color_4">Sub Category</label>
               <select
                 placeholder="Choose SubCategory"
-                className="p-4 mb-3 rounded-md border-[1px] border-color_3 focus:outline-none"
+                className="mt-1 p-3 border rounded w-full placeholder-color_3 border-color_4/30 cursor-pointer"
                 onChange={(e) => setSubCategory(e.target.value)}
               >
-                {subCategories?.map((c) => (
-                  <option key={c._id} value={c._id}>
-                    {c.name}
+                {subCategories?.map((s) => (
+                  <option key={s._id} value={s._id}>
+                    {s.name}
                   </option>
                 ))}
               </select>
             </div>
             </div>
             {/* prices */}
-            <div className="flex flex-col gap-4 items-center md:gap-12 md:flex-row w-full">
+            <div className="flex flex-col gap-4 items-center md:gap-12 md:flex-row w-full mb-4">
             {/* price */}
-            <div className="flex flex-col w-full">
-              <label htmlFor="name">Price</label>
-              <input
-                type="number"
-                className="p-4 mb-3  border rounded-md"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-              />
+            <div className="flex flex-col w-full mb-4">
+              <label htmlFor="price" className="font-semibold text-color_4">Price</label>
+              <Input type="number" value={price} onChange={(e) => setPrice(e.target.value)}/> 
             </div>
             {/* old price */}
-            <div className="flex flex-col w-full">
-              <label htmlFor="name">Old Price</label>
-              <input
-                type="number"
-                className="p-4 mb-3  border rounded-md"
-                value={oldPrice}
-                onChange={(e) => setOldPrice(e.target.value)}
-              />
+            <div className="flex flex-col w-full mb-4">
+              <label htmlFor="oldPrice" className="font-semibold text-color_4">Old Price</label>
+              <Input type="number" value={oldPrice} onChange={(e) => setOldPrice(e.target.value)}/>
             </div>
-            </div>
-            {/* quantity & stock  */}
-            <div className="flex flex-col gap-4 items-center md:gap-12 md:flex-row w-full">
             {/* quantity */}
-            <div className="flex flex-col w-full">
-              <label htmlFor="name">Quantity</label>
-              <input
-                type="number"
-                className="p-4 mb-3  border rounded-md"
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
-              />
+            <div className="flex flex-col w-full mb-4">
+              <label htmlFor="quantity" className="font-semibold text-color_4">Quantity</label>
+              <Input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)}/>
             </div>
             {/* in stock */}
-            <div className="flex flex-col w-full">
-              <label htmlFor="name">Count In Stock</label>
-              <input
-                type="number"
-                className="p-4 mb-3  border rounded-md"
-                value={stock}
-                onChange={(e) => setStock(e.target.value)}
-              />
+            <div className="flex flex-col w-full mb-4">
+              <label htmlFor="stock" className="font-semibold text-color_4">Count In Stock</label>
+              <Input type="number" value={stock} onChange={(e) => setStock(e.target.value)}/>
             </div>
             </div>
+
           </div>
           {/* submit button */}
           <button
@@ -235,10 +210,9 @@ const ProductList = () => {
             Submit
           </button>
         </div>
-        </div>
-      </div>
+    </div>
     </div>
   );
 };
 
-export default ProductList;
+export default AddProduct;

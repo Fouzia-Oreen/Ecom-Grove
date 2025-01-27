@@ -1,4 +1,4 @@
-import { shippingInfo } from '../../assets/data'
+import { shippingInfo } from '../../../assets/data'
 
 const ShippingInfoSection = () => {
   return (

@@ -1,16 +1,18 @@
- import { headerSlider } from "../assets/data";
-import { useGetTopProductsQuery } from "../redux/api/productSlice";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import Loader from "./Loader";
-import { NavLink } from "react-router-dom";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+//import { headerSlider } from "../../../assets/data";
+import { Link } from 'react-router-dom';
+import Loader from '../../../components/Loader';
+import { useFetchAllHeadersQuery } from '../../../redux/api/headerSlice';
 
 
 const Header = () => {
-  const { isLoading, error } = useGetTopProductsQuery();
+  // const { isLoading, error } = useGetTopProductsQuery();
+  const  {data: headers, isLoading, error} = useFetchAllHeadersQuery();
+  
 
   if (isLoading) {
     return <Loader />;
@@ -32,19 +34,20 @@ const Header = () => {
         modules={[Autoplay]}
         className="mySwiper"
       >
+        {headers.title}
     {
-      headerSlider.map((item, i) => (
+      headers.map((item, i) => (
         <>
         <SwiperSlide>
-          <NavLink to="">
+          <Link to="/shop">
           <div className="md:h-[500px] h-[300px]" key={i}>
-          <img src={item.url} alt="" className="absolute"/> 
+          <img src={item.image} alt="" className="absolute"/> 
           <div className="hover:bg-color_4 hover:bg-opacity-20 w-full h-full relative flex items-start flex-col justify-end md:pl-40 md:pb-20 pl-6 pb-8 transition duration-300">
-            <h1 className="md:text-5xl text-xl text-color_1 font-semibold">{item.title}</h1>
-            <h1 className="md:text-xl text-sm md:pt-4 text-color_2 text-left">{item.desc}</h1>
+            <h1 className="md:text-5xl text-xl text-color_6 font-semibold">{item.title}</h1>
+            <h1 className="md:text-xl text-sm md:pt-4 text-color_1 text-left">{item.description}</h1>
           </div>     
           </div>
-          </NavLink>
+          </Link>
         </SwiperSlide>
         </>
       ))

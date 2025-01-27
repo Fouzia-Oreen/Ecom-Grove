@@ -1,3 +1,5 @@
+import Input from "./Input";
+
 /* eslint-disable react/prop-types */
 const CategoryForm = ({
     value,
@@ -9,15 +11,9 @@ const CategoryForm = ({
     return (
       <div className="p-3">
         <form onSubmit={handleSubmit} className="space-y-3">
-          <input
-            type="text"
-            className="py-3 px-4 border rounded-lg w-full"
-            placeholder="Write category name"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-          />
+          <Input type="text" onChange={(e) => setValue(e.target.value)} placeholder="Write category name" value={value}/>
   
-          <div className="flex justify-between gap-4">
+          <div className="flex justify-between">
             <button className="btn auth-btn">
               {buttonText}
             </button>

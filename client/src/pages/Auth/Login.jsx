@@ -6,6 +6,8 @@ import { setCredentials } from '../../redux/features/auth/authSlice'
 import { toast } from 'react-toastify'
 import Loader from '../../components/Loader'
 import image from '../../assets/auth.png'
+import Title from '../../components/Title'
+import Input from '../../components/Input'
 
 
 const Login = () => {
@@ -41,64 +43,57 @@ const Login = () => {
   };
     
   return (
-   <div>
-     <section className="section__container flex flex-col md:flex-row flex-wrap  gap-6">
-       <div className="md:mt-[5rem] flex-1 mb-4">
-         <h1 className="text-3xl font-semibold mb-4">Sign In</h1>
-         <form onSubmit={submitHandler} className="max-w-[30rem] ">
-           <div className="my-[2rem]">
-             <label
-               htmlFor="email"
-               className="block text-sm font-medium text-color_4"
-             >
-               Email Address
-             </label>
-             <input
-               type="email"
-               id="email"
-               className="mt-1 p-2 border rounded w-full"
-               placeholder="Enter email"
-               value={email}
-               onChange={(e) => setEmail(e.target.value)}
-             />
-           </div>
-           <div className="mb-4">
-             <label
-               htmlFor="password"
-               className="block text-sm font-medium text-color_4"
-             >
-               Password
-             </label>
-             <input
-               type="password"
-               id="password"
-               className="mt-1 p-2 border rounded w-full"
-               placeholder="Enter password"
-               value={password}
-               onChange={(e) => setPassword(e.target.value)}
-             />
-           </div>
-          {/* submit button */}
-           <button
-             disabled={isLoading}
-             type="submit"
-             className="btn auth-btn my-[1rem]"
-           >
-             {isLoading ? "Signing In..." : "Sign In"}
-           </button>
-           {isLoading && <Loader />}
-         </form>
-          {/* point to register */}
-           <p className="text-color_5 mt-2">
-             New Customer?{" "}
-             <Link
-               to={redirect ? `/register?redirect=${redirect}` : "/register"}
-               className="text-color_6 font-semibold italic hover:underline ml-2 "
-             >
-               Register
-             </Link>
-           </p> 
-       </div>
+   <div className='lg:h-[70vh] lg:mt-20 flex'>
+  <section className="container grid grid-cols-1 md:grid-cols-2 p-2 gap-40  ">
+      <div className="flex-1 ">
+        <div className="lg:ml-[5rem] ">
+        <Title text1={"Please"} text2={"Login"}/>
+        </div>
+        <form onSubmit={submitHandler} className="container  w-full lg:w-[450px]">
+
+          <div className="my-[2rem]">
+            <label
+              htmlFor="email"
+              className="block font-medium text-color_4/80"
+            >
+              Email Address
+            </label>
+            <Input id="email" type="email" placeholder="Enter your email ...." onChange={(e) => setEmail(e.target.value)} value={email} />
+          </div>
+
+          <div className="my-[2rem]">
+            <label
+              htmlFor="password"
+              className="block font-medium text-color_4/80 "
+            >
+              Password
+            </label>
+            <Input id="password" type="password" placeholder="Enter your password ...." onChange={(e) => setPassword(e.target.value)} value={password} />
+          </div>
+
+          <button
+            disabled={isLoading}
+            type="submit"
+            className="auth-btn btn cursor-pointer]"
+          >
+            {/* {isLoading ? "Registering..." : "Register"} */}
+            {isLoading ? <Loader /> : "Login"}
+          </button>
+          <div className="mt-4">
+          <p className="">
+            Don&apos;t have an account?{" "}
+            <Link
+              to={redirect ? `/register?redirect=${redirect}` : "/register"}
+              className="text-color_6 font-semibold italic hover:underline"
+            >
+             {" "} Register
+            </Link>
+          </p>
+        </div>
+
+          {/* {isLoading && <Loader />} */}
+        </form>
+      </div>
        {/* image */}
        <div className='md:mt-[5rem] flex-1 mt-4'>
        <img
@@ -107,8 +102,7 @@ const Login = () => {
          className=""
        />
        </div>
-
-     </section>
+  </section>
    </div>
   )
 }
