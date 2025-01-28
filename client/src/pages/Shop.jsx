@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFetchCategoriesQuery } from "../redux/api/categorySlice";
-import { useGetFilteredProductsQuery } from "../redux/api/productSlice";
+import { useFetchProductsPerPageQuery, useGetFilteredProductsQuery } from "../redux/api/productSlice";
 
 import { IoIosArrowDown } from "react-icons/io";
 import Loader from "../components/Loader";
@@ -39,6 +39,16 @@ const Shop = () => {
   const subCategoriesQuery = useFetchSubCategoriesQuery();
   const categoriesQuery = useFetchCategoriesQuery();
   const [priceFilter, setPriceFilter] = useState("");
+
+  const [ page, setPage] = useState(1);
+  const [ keyword ] = useState('');
+  const { data } = useFetchProductsPerPageQuery({ page, keyword });
+
+   const handlePageChange = (newPage) => {
+    if (newPage > 0 && newPage <= (data?.pages || 1)) {
+      setPage(newPage);
+    }
+  };
 
   const filteredProductsQuery = useGetFilteredProductsQuery({
     checked,
@@ -104,6 +114,51 @@ const Shop = () => {
     // Update the price filter state when the user types in the input filed
     setPriceFilter(e.target.value);
   };
+
+  const renderPagination = () => {
+    const totalPages = data?.pages || 1;
+    const pagination = [];
+
+    // Add the "Prev" button
+    pagination.push(
+      <button
+        key="prev"
+        onClick={() => handlePageChange(page - 1)}
+        disabled={page === 1}
+        className="px-3 py-1 text-sm font-semibold"
+      >
+        Prev
+      </button>
+    );
+
+    // Add page numbers
+    for (let i = 1; i <= totalPages; i++) {
+      pagination.push(
+        <button
+          key={i}
+          onClick={() => handlePageChange(i)}
+          className={`px-2.5 py-1 border rounded-full bg-color_2 text-sm font-medium ${
+            i === page ? 'bg-color_6 text-white' : ''
+          }`}
+        >
+          {i}
+        </button>
+      );
+    }
+    // Add the "Next" button
+    pagination.push(
+      <button
+        key="next"
+        onClick={() => handlePageChange(page + 1)}
+        disabled={page === totalPages}
+        className="px-3 py-1 text-sm font-semibold"
+      >
+        Next
+      </button>
+    );
+    return pagination;
+  };
+
 
   return (
     <>
@@ -252,18 +307,24 @@ const Shop = () => {
           </div>
 
           <div className="p-3 md:py-8 md:px-12 lg:w-[1400px]">
+
             <h2 className="text-lg font-medium  mb-6">No of products : {products?.length}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
               {products.length === 0 ? (
                 <Loader />
               ) : (
-                products?.map((product) => (
+                data?.products.map((product) => (
                   <div className="p-3 " key={product._id}>
                     <Product product={product} />
                   </div>
                 ))
               )}
             </div>
+            {/* pagination */}
+            <div className="flex items-center justify-center mt-20 space-x-2 ">
+            {renderPagination()}
+            </div>
+
           </div>
         </div>
       </div>

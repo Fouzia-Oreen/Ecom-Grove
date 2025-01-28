@@ -84,25 +84,26 @@ const removeProduct = asyncHandler(async (req, res) => {
 const fetchProducts = asyncHandler(async (req, res) => {
   try {
     // change the page size to increase the no. of product fetched
-    const pageSize = 6;
+    const pageSize = 12;
+    const page = Number(req.query.page) || 1;
 
     const keyword = req.query.keyword
-      ? {
-          name: {
-            $regex: req.query.keyword,
-            $options: "i",
-          },
-        }
-      : {};
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: 'i',
+        },
+      }
+    : {};
 
     const count = await Product.countDocuments({ ...keyword });
-    const products = await Product.find({ ...keyword }).limit(pageSize);
+    const products = await Product.find({ ...keyword }).limit(pageSize).skip(pageSize * (page - 1));
 
     res.json({
       products,
-      page: 1,
+      page,
       pages: Math.ceil(count / pageSize),
-      hasMore: false,
+      hasMore: page < Math.ceil(count / pageSize), // Check if there are more pages
     });
   } catch (error) {
     console.error(error);

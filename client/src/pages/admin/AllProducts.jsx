@@ -1,12 +1,66 @@
 import moment from "moment";
 import { Link } from "react-router-dom";
 import Title from "../../components/Title";
-import { useAllProductsQuery } from "../../redux/api/productSlice";
+import { useAllProductsQuery, useFetchProductsPerPageQuery } from "../../redux/api/productSlice";
 import SidebarMenu from "./SidebarMenu";
+import { useState } from "react";
 
 const AllProducts = () => {
   const { data: products, isLoading, isError } = useAllProductsQuery();
-
+    const [ page, setPage] = useState(1);
+    const [ keyword ] = useState('');
+    const { data } = useFetchProductsPerPageQuery({ page, keyword });
+  
+     const handlePageChange = (newPage) => {
+      if (newPage > 0 && newPage <= (data?.pages || 1)) {
+        setPage(newPage);
+      }
+    };
+    const renderPagination = () => {
+      const totalPages = data?.pages || 1;
+      const pagination = [];
+  
+      // Add the "Prev" button
+      pagination.push(
+        <button
+          key="prev"
+          onClick={() => handlePageChange(page - 1)}
+          disabled={page === 1}
+          className="px-3 py-1 text-sm font-semibold"
+        >
+          Prev
+        </button>
+      );
+  
+      // Add page numbers
+      for (let i = 1; i <= totalPages; i++) {
+        pagination.push(
+          <button
+            key={i}
+            onClick={() => handlePageChange(i)}
+            className={`px-2.5 py-1 border rounded-full bg-color_2 text-sm font-medium ${
+              i === page ? 'bg-color_6 text-white' : ''
+            }`}
+          >
+            {i}
+          </button>
+        );
+      }
+      // Add the "Next" button
+      pagination.push(
+        <button
+          key="next"
+          onClick={() => handlePageChange(page + 1)}
+          disabled={page === totalPages}
+          className="px-3 py-1 text-sm font-semibold"
+        >
+          Next
+        </button>
+      );
+      return pagination;
+    };
+  
+  
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -28,7 +82,7 @@ const AllProducts = () => {
       {/* Your admin dashboard content goes here */}
       <div className="">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-14">
-      {products.map((product) => (
+      {data?.products.map((product) => (
         <Link
           key={product._id}
           to={`/admin/product/update/${product._id}`}
@@ -71,6 +125,10 @@ const AllProducts = () => {
         </div>      
         </Link>
       ))}
+      </div>
+      {/* pagination */}
+      <div className="flex items-center justify-center mt-12 space-x-2 ">
+      {renderPagination()}
       </div>
     </div>
     </div>
