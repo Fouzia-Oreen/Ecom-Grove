@@ -125,12 +125,13 @@ const fetchProductById = asyncHandler(async (req, res) => {
     res.status(404).json({ error: "Product not found" });
   }
 });
+
 // fetch all the products based on brand, category, subcategory
 const fetchAllProducts = asyncHandler(async (req, res) => {
   try {
     const products = await Product.find({})
       .populate("category", "name -_id").populate("brand", "name -_id").populate("subCategory", "name -_id")
-      .limit(12)
+      .limit()
       .sort({ createAt: -1 });
 
     res.json(products);
@@ -180,6 +181,7 @@ const addProductReview = asyncHandler(async (req, res) => {
     res.status(400).json(error.message);
   }
 });
+
 // fetch top products with rating
 const fetchTopProducts = asyncHandler(async (req, res) => {
   try {
@@ -190,6 +192,7 @@ const fetchTopProducts = asyncHandler(async (req, res) => {
     res.status(400).json(error.message);
   }
 });
+
 // recently added or the newest products
 const fetchNewProducts = asyncHandler(async (req, res) => {
   try {
@@ -200,6 +203,7 @@ const fetchNewProducts = asyncHandler(async (req, res) => {
     res.status(400).json(error.message);
   }
 });
+
 // filter the products by category, subcategory, brand
 const filterProducts = asyncHandler(async (req, res) => {
   try {

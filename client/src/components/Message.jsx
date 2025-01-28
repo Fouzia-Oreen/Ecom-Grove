@@ -3,7 +3,7 @@ const Message = ({ variant, children }) => {
     const getVariantClass = () => {
       switch (variant) {
         case "success":
-          return "bg-green-100 text-color_4";
+          return "bg-green-200 text-green-700 font-bold";
         case "error":
           return "bg-red-100 text-red-800";
         default:

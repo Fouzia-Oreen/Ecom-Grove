@@ -55,7 +55,7 @@ export const Navbar = () => {
     {/* notification */}
     <div className=" flex flex-col items-center justify-between bg-color_5   md:flex-row md:px-8 sm:gap-2  p-2 text-color_1 w-full" >
       {/* phone number */}
-      <Link to='/' className="flex items-center gap-2"><MdOutlineLocalPhone /><span>16 002</span>
+      <Link to='/' className="flex items-center gap-2"><MdOutlineLocalPhone /><span className="text-xs">16 002</span>
       </Link> 
       {/* promotional slide */}
       <div className="md:w-[400px] w-full my-2 md:my-0 lg:ml-20">
@@ -70,7 +70,7 @@ export const Navbar = () => {
         </Marquee>
       </div>
       {/* gmail */}
-        <Link to='/' className="flex items-center gap-2"><MdOutlineMarkEmailUnread /><span>ecomgrove@gmail.com</span></Link>
+        <Link to='/' className="flex items-center gap-2"><MdOutlineMarkEmailUnread /><span className="text-xs">ecomgrove@gmail.com</span></Link>
     </div>
     {/* nav-menu */}
     <nav  className="flex items-center justify-between py-5 border-b-[1px] border-color_3  md:px-12">
@@ -78,7 +78,7 @@ export const Navbar = () => {
         {/* logo */}
         <Link to='/' className="flex gap-2 pl-4 items-center">
         <img src={logo} alt="logo" className="h-8"/>
-        <span className="font-bold text-lg  hidden md:block text-color_6">Ecom Grove</span>
+        <span className="font-bold text-lg  hidden lg:block text-color_6">Ecom Grove</span>
         </Link>
         {/* nav-links */}
         <div className="hidden lg:flex gap-5 ">
@@ -95,7 +95,6 @@ export const Navbar = () => {
         <div className="flex items-center gap-2">
         <Link to="/cart" className="flex items-center relative">
         <HiOutlineShoppingCart className="mr-3 text-color_4" size={22}/>
-        {/* <p className="absolute right-[5px] bottom-[12px]  bg-color_3  size-4 rounded-full text-xs font-bold text-color_6 flex items-center justify-center">{cartItems.length}</p> */}
         <p className="absolute right-[5px] bottom-[12px]  bg-color_3  size-4 rounded-full text-xs font-bold text-color_6 flex items-center justify-center">{cartItems.reduce((acc, item) => acc + item.qty, 0)}</p>
         
         </Link>
