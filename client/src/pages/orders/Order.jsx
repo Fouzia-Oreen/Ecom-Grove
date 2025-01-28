@@ -11,6 +11,7 @@ import {
     useGetPaypalClientIdQuery,
     usePayOrderMutation,
 } from "../../redux/api/orderSlice";
+import moment from "moment";
 
 const Order = () => {
   const { id: orderId } = useParams(); 
@@ -168,7 +169,7 @@ const Order = () => {
           </p>
 
           {order.isPaid ? (
-            <Message variant="success">Paid on {order.paidAt}</Message>
+            <Message variant="success">Paid on {new Date(order.paidAt).toDateString()}</Message>
           ) : (
             <Message variant="danger">Not paid</Message>
           )}

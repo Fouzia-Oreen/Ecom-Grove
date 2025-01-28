@@ -96,9 +96,8 @@ const SubCategoryList = () => {
       {/* sidebar - menu */}
       <SidebarMenu />
       <div className="md:py-8 md:px-12 lg:w-[1400px] ">
-      <div className="ml-6">
       <Title text1={"Manage"} text2={"SubCategories"}/>
-      </div>
+
         {/* Your admin dashboard content goes here */}
         <div className="">
         <div className="ml-2">

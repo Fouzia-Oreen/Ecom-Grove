@@ -28,7 +28,7 @@ export default function SidebarMenu() {
   
   
   return (
-    <nav className=" flex flex-col  border-r-color_3 shadow-sm border-[1px]  justify-between h-screen  ">
+    <nav className=" flex flex-col  border-r-color_3 shadow-sm border-[1px]  justify-between  ">
      {/* menu-links */}
      <ul className="p-3 md:pt-20 w-full lg:w-60">
       <li className=" lg:w-full mb-4">
@@ -40,10 +40,10 @@ export default function SidebarMenu() {
           backgroundColor: isActive ? "#C0BFC2" : ""
         })}>
       <FaRegChartBar className="p-1.5 size-9 flex items-center justify-center rounded-md bg-color_2"/>
-      <span className="hidden md:block font-medium  py-1.5 ">Dashboard</span>
+      <span className="hidden lg:block font-medium  py-1.5 ">Dashboard</span>
       </NavLink>
       </li>
-      <li className="w-fit md:w-full mb-4">
+      <li className="w-fit lg:w-full mb-4">
       <NavLink className=" rounded-md flex items-center gap-3   "
        to="/admin/header"
        style={({ isActive }) => (
@@ -52,10 +52,10 @@ export default function SidebarMenu() {
           backgroundColor: isActive ? "#C0BFC2" : ""
         })}>
       <MdOutlineCategory className="p-1.5 size-9 flex items-center justify-center rounded-md bg-color_2"/>
-      <span className="hidden md:block font-medium  py-1.5 ">Add Header</span>
+      <span className="hidden lg:block font-medium  py-1.5 ">Add Header</span>
       </NavLink>
       </li>
-      <li className="w-fit md:w-full mb-4">
+      <li className="w-fit lg:w-full mb-4">
       <NavLink className=" rounded-md flex items-center gap-3   "
        to="/admin/allheaders"
        style={({ isActive }) => (
@@ -64,10 +64,10 @@ export default function SidebarMenu() {
           backgroundColor: isActive ? "#C0BFC2" : ""
         })}>
       <MdOutlineCategory className="p-1.5 size-9 flex items-center justify-center rounded-md bg-color_2"/>
-      <span className="hidden md:block font-medium  py-1.5 ">All Headers</span>
+      <span className="hidden lg:block font-medium  py-1.5 ">All Headers</span>
       </NavLink>
       </li>
-      <li className="w-fit md:w-full mb-4">
+      <li className="w-fit lg:w-full mb-4">
       <NavLink className=" rounded-md flex items-center gap-3   "
        to="/admin/categorylist"
        style={({ isActive }) => (
@@ -76,10 +76,10 @@ export default function SidebarMenu() {
           backgroundColor: isActive ? "#C0BFC2" : ""
         })}>
       <MdOutlineCategory className="p-1.5 size-9 flex items-center justify-center rounded-md bg-color_2"/>
-      <span className="hidden md:block font-medium  py-1.5 ">Category</span>
+      <span className="hidden lg:block font-medium  py-1.5 ">Category</span>
       </NavLink>
       </li>
-      <li className="w-fit md:w-full mb-4">
+      <li className="w-fit lg:w-full mb-4">
       <NavLink className=" rounded-md flex items-center gap-3   "
        to="/admin/subcategoryList"
        style={({ isActive }) => (
@@ -88,10 +88,10 @@ export default function SidebarMenu() {
           backgroundColor: isActive ? "#C0BFC2" : ""
         })}>
       <RiApps2AddLine className="p-1.5 size-9 flex items-center justify-center rounded-md bg-color_2"/>
-      <span className="hidden md:block font-medium  py-1.5 ">SubCategory</span>
+      <span className="hidden lg:block font-medium  py-1.5 ">SubCategory</span>
       </NavLink>
       </li>
-      <li className="w-fit md:w-full mb-4">
+      <li className="w-fit lg:w-full mb-4">
       <NavLink className=" rounded-md flex items-center gap-3   "
        to="/admin/brandList"
        style={({ isActive }) => (
@@ -100,10 +100,10 @@ export default function SidebarMenu() {
           backgroundColor: isActive ? "#C0BFC2" : ""
         })}>
       <TbCategoryPlus className="p-1.5 size-9 flex items-center justify-center rounded-md bg-color_2"/>
-      <span className="hidden md:block font-medium  py-1.5 ">Brand</span>
+      <span className="hidden lg:block font-medium  py-1.5 ">Brand</span>
       </NavLink>
       </li>
-      <li className="w-fit md:w-full mb-4">
+      <li className="w-fit lg:w-full mb-4">
       <NavLink className=" rounded-md flex items-center gap-3   "
        to="/admin/addproduct"
        style={({ isActive }) => (
@@ -112,10 +112,10 @@ export default function SidebarMenu() {
           backgroundColor: isActive ? "#C0BFC2" : ""
         })}>
       <IoIosAddCircleOutline className="p-1.5 size-9 flex items-center justify-center rounded-md bg-color_2"/>
-      <span className="hidden md:block font-medium  py-1.5 ">Add Product</span>
+      <span className="hidden lg:block font-medium  py-1.5 ">Add Product</span>
       </NavLink>
       </li>
-      <li className="w-fit md:w-full mb-4">
+      <li className="w-fit lg:w-full mb-4">
       <NavLink className=" rounded-md flex items-center gap-3   "
        to="/admin/allproductslist"
        style={({ isActive }) => (
@@ -124,7 +124,7 @@ export default function SidebarMenu() {
           backgroundColor: isActive ? "#C0BFC2" : ""
         })}>
       <LuLayoutList className="p-1.5 size-9 flex items-center justify-center rounded-md bg-color_2"/>
-      <span className="hidden md:block font-medium  py-1.5 ">All Products</span>
+      <span className="hidden lg:block font-medium  py-1.5 ">All Products</span>
       </NavLink>
       </li>
       <li className="w-fit md:w-full mb-4">
@@ -136,7 +136,7 @@ export default function SidebarMenu() {
           backgroundColor: isActive ? "#C0BFC2" : ""
         })}>
       <LuUsers className="p-1.5 size-9 flex items-center justify-center rounded-md bg-color_2"/>
-      <span className="hidden md:block font-medium  py-1.5 "> Users</span>
+      <span className="hidden lg:block font-medium  py-1.5 "> Users</span>
       </NavLink>
       </li>
       <li className="w-fit md:w-full mb-4">
@@ -148,13 +148,13 @@ export default function SidebarMenu() {
           backgroundColor: isActive ? "#C0BFC2" : ""
         })}>
       <ListTodo className="p-1.5 size-9 flex items-center justify-center rounded-md bg-color_2"/>
-      <span className="hidden md:block font-medium  py-1.5 ">Orders</span>
+      <span className="hidden lg:block font-medium  py-1.5 ">Orders</span>
       </NavLink>
       </li>
      </ul>
       {/* credentials */}
       <div className="border-t-[1px] border-color_2  flex p-3 justify-between ">
-          <div className="leading-4 hidden py-1.5 md:block">
+          <div className="leading-4 hidden py-1.5 lg:block">
             {/* admin */}
             <h4 className="font-semibold ">{userInfo.username}</h4>
             <span className="text-xs text-gray-600">{userInfo.email}</span>

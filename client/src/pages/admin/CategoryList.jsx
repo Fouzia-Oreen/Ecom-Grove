@@ -94,10 +94,9 @@ const CategoryList = () => {
     <div className="flex lg:justify-center">
     {/* sidebar - menu */}
     <SidebarMenu />
-    <div className="md:py-8 md:px-12 lg:w-[1400px]">
-    <div className="ml-6">
+    <div className="md:py-8 md:px-12 lg:w-[1400px] ">
     <Title text1={"Create"} text2={"Category"}/>
-    </div>
+
       {/* Your admin dashboard content goes here */}
       <div className="ml-2">
           <CategoryForm

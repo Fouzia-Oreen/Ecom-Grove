@@ -80,13 +80,12 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="flex lg:items-center lg:justify-center">
+    <div className="flex  lg:justify-center">
     {/* sidebar - menu */}
     <SidebarMenu />
     <div className=" md:py-8 md:px-12 lg:w-[1400px]">    
-      <div className="ml-6">
       <Title text1={"Add"} text2={"Product"}/>
-      </div>
+
       {/* if you have an image it will show on the imageUrl */}
       {imageUrl && (
             <div className="text-center">

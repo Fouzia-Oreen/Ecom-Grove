@@ -1,9 +1,8 @@
 import moment from "moment";
 import { Link } from "react-router-dom";
 import Title from "../../components/Title";
-import { useAllProductsQuery } from "../../redux/api/productSlice";
-import SidebarMenu from "./SidebarMenu";
 import { useFetchAllHeadersQuery } from "../../redux/api/headerSlice";
+import SidebarMenu from "./SidebarMenu";
 
 const AllHeaders = () => {
   const { data: headers, isLoading, isError } = useFetchAllHeadersQuery();
@@ -22,14 +21,11 @@ const AllHeaders = () => {
       <SidebarMenu />
       <div className=" md:px-12 lg:w-[1400px] p-2">
       <div className=" grid grid-cols-2 items-center justify-between ">
-      <div className="ml-6">
       <Title text1={"All"} text2={"Headers"}/>
-      </div>
       <p className=" text-sm font-medium text-end text-color_6">Total Headers : ({headers.length})</p>
       </div>
 
       {/* Your admin dashboard content goes here */}
-      <div className="">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-14">
       {headers.map((header) => (
         <Link
@@ -74,7 +70,6 @@ const AllHeaders = () => {
         </Link>
       ))}
       </div>
-    </div>
     </div>
     </div>
    

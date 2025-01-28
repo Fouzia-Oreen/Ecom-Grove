@@ -95,9 +95,8 @@ const BrandList = () => {
       {/* <AdminMenu /> */}
       <SidebarMenu />
       <div className="md:py-8 md:px-12 lg:w-[1400px]">
-      <div className="ml-6">
       <Title text1={"Manage"} text2={"Brands"}/>
-      </div>
+
         <BrandForm
           value={name}
           setValue={setName}

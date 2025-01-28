@@ -17,13 +17,11 @@ const AllProducts = () => {
 
   return (
     <>
-    <div className="flex lg:items-center lg:justify-center">
+    <div className="flex lg:justify-center">
       <SidebarMenu />
-      <div className=" md:px-12 lg:w-[1400px]">
+      <div className=" md:px-12 lg:w-[1400px] p-2">
       <div className=" grid grid-cols-2 items-center justify-between">
-      <div className="ml-6">
       <Title text1={"All"} text2={"Products"}/>
-      </div>
       <p className=" text-sm font-medium text-end text-color_6">Total Products : ({products.length})</p>
       </div>
 

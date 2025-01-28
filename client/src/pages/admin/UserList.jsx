@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { FaCheck, FaEdit, FaPlus, FaSearch, FaTimes, FaTrash } from "react-icons/fa";
+import { FaCheck, FaEdit, FaTimes, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
-import Input from "../../components/Input";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import Title from "../../components/Title";
@@ -22,9 +21,7 @@ const UserList = () => {
   const [editableUserPhone, setEditableUserPhone] = useState("");
   const [editableUserAddress, setEditableUserAddress] = useState("");
   const [updateUser] = useUpdateUserMutation();
-  // const [searchTerm, setSearchTerm] = useState("");
-   const [searchResult, setSearchResult] = useState('');
-  // const [getUserDetails] = useGetUserDetailsQuery
+
 
   useEffect(() => {
     refetch();
@@ -62,23 +59,12 @@ const UserList = () => {
       toast.error(err?.data?.message || err.error);
     }
   };
-  const searchHandler = () => {
-    try {
-      setSearchResult(
-        users.filter((user) =>
-          user.username.toLowerCase().includes(searchResult.toLowerCase())
-        )
-      );
-    } catch (err) {
-      toast.error(err?.data?.message || err.error)
-    }
-  }
 
   return (
-    <div className="flex lg:items-center lg:justify-center gap-3">
+    <div className="flex  lg:justify-center ">
       {/* sidebar - menu */}
       <SidebarMenu />
-      <div className=" md:px-12 lg:w-[1400px] overflow-hidden">
+      <div className=" lg:w-[1400px] overflow-hidden p-2 md:px-12">
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -86,23 +72,12 @@ const UserList = () => {
           {error?.data?.message || error.error}
         </Message>
       ) : (  
-        <div className="flex flex-col gap-6 container">         
-          <div className="">
-            <div className="grid grid-cols-2 items-center lg:w-full">
-            <Title text1={"Users"} text2={"List"} />
-              <h2 className="text-end font-semibold text-color_6">Total Users: {users.length}</h2>
-            </div>
-            {/* search */}
-            <div className="flex items-center justify-between mb-4 gap-3 relative w-[340px] lg:w-full">
-              <Input  type="text" placeholder="Search by name" onChange={(e)=> e.target.value} value={users.username} />
-              <button 
-              className="absolute right-0 top-1 bg-color_6 text-white py-[1.05rem] px-6 rounded-r-md"
-               onClick={searchHandler}
-              >
-                <FaSearch />
-              </button>
-            </div>
-          </div>
+        <div className=" ">         
+        <div className="grid grid-cols-2 items-center ">
+        <Title text1={"Users"} text2={"List"} />
+          <h2 className="text-end font-semibold text-color_6">Total Users: {users.length}</h2>
+        </div>
+
          {/* table */}
          <div className="overflow-x-auto">
          <table className="border-collapse w-full">
