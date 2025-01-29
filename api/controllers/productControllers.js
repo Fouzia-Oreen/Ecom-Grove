@@ -4,7 +4,7 @@ import Product from "../models/productModel.js";
 
 const addProduct = asyncHandler(async (req, res) => {
   try {
-    const { name, description, price, category, quantity, brand, subCategory } = req.fields;
+    const { name, description, price, category, quantity, brand } = req.fields;
 
    // Validation
     switch (true) {
@@ -18,8 +18,6 @@ const addProduct = asyncHandler(async (req, res) => {
       return res.json({ error: "Price is required" });
       case !category:
         return res.json({ error: "Category is required" });
-        case !subCategory:
-          return res.json({ error: "Category is required" });
       case !quantity:
         return res.json({ error: "Quantity is required" });
     }
@@ -35,7 +33,7 @@ const addProduct = asyncHandler(async (req, res) => {
 
 const updateProduct = asyncHandler(async (req, res) => {
   try {
-    const { name, description, price, category, subCategory, quantity, brand } = req.fields;
+    const { name, description, price, category, quantity, brand } = req.fields;
 
     // Validation
     switch (true) {
@@ -49,8 +47,6 @@ const updateProduct = asyncHandler(async (req, res) => {
         return res.json({ error: "Old Price is required" });
       case !category:
         return res.json({ error: "Category is required" });
-        case !subCategory:
-          return res.json({ error: "SubCategory is required" });
       case !quantity:
         return res.json({ error: "Quantity is required" });
     }
@@ -80,13 +76,11 @@ const removeProduct = asyncHandler(async (req, res) => {
   }
 });
 
-// fetch 6 products
+// fetch 12 products per page
 const fetchProducts = asyncHandler(async (req, res) => {
   try {
-    // change the page size to increase the no. of product fetched
     const pageSize = 12;
     const page = Number(req.query.page) || 1;
-
     const keyword = req.query.keyword
     ? {
         name: {
@@ -103,7 +97,7 @@ const fetchProducts = asyncHandler(async (req, res) => {
       products,
       page,
       pages: Math.ceil(count / pageSize),
-      hasMore: page < Math.ceil(count / pageSize), // Check if there are more pages
+      hasMore: page < Math.ceil(count / pageSize)
     });
   } catch (error) {
     console.error(error);
@@ -131,7 +125,7 @@ const fetchProductById = asyncHandler(async (req, res) => {
 const fetchAllProducts = asyncHandler(async (req, res) => {
   try {
     const products = await Product.find({})
-      .populate("category", "name -_id").populate("brand", "name -_id").populate("subCategory", "name -_id")
+      .populate("category", "name -_id").populate("brand", "name -_id")
       .limit()
       .sort({ createAt: -1 });
 
@@ -205,6 +199,16 @@ const fetchNewProducts = asyncHandler(async (req, res) => {
   }
 });
 
+const fetchOfferProducts = asyncHandler(async (req, res) => {
+  try {
+    const products = await Product.find({}).sort({ offer: 1 }).limit();
+    res.json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json(error.message);
+  }
+});
+
 // filter the products by category, subcategory, brand
 const filterProducts = asyncHandler(async (req, res) => {
   try {
@@ -212,7 +216,7 @@ const filterProducts = asyncHandler(async (req, res) => {
 
     let args = {};
     if (checked.length > 0) args.category = checked;
-    if (checked.length > 0) args.subCategory = checked;
+    // if (checked.length > 0) args.subCategory = checked;
     if (checked.length > 0) args.brand = checked;
     if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
 
@@ -227,5 +231,5 @@ const filterProducts = asyncHandler(async (req, res) => {
 
 
 export {
-  addProduct, addProductReview, fetchAllProducts, fetchNewProducts, fetchProductById, fetchProducts, fetchTopProducts, filterProducts, removeProduct, updateProduct
+  addProduct, addProductReview, fetchAllProducts, fetchNewProducts, fetchProductById, fetchProducts, fetchTopProducts, filterProducts, removeProduct, updateProduct, fetchOfferProducts
 };

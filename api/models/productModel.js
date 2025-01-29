@@ -21,7 +21,7 @@ const productSchema = mongoose.Schema(
     image: { type: String, required: true },
     brand: { type: ObjectId, ref: "Brand", required: true },
     category: { type: ObjectId, ref: "Category", required: true },
-    subCategory: { type: ObjectId, ref: "SubCategory", required: true },
+    offer: { type: Boolean},
     quantity: { type: Number, required: true },
     description: { type: String, required: true },
     reviews: [reviewSchema],

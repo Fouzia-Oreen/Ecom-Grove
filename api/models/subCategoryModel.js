@@ -1,13 +1,13 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 
-const subCategorySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    trim: true,
-    required: true,
-    maxLength: 32,
-    unique: true,
-  },
-});
+// const subCategorySchema = new mongoose.Schema({
+//   name: {
+//     type: String,
+//     trim: true,
+//     required: true,
+//     maxLength: 32,
+//     unique: true,
+//   },
+// });
 
-export default mongoose.model("SubCategory", subCategorySchema);
+// export default mongoose.model("SubCategory", subCategorySchema);

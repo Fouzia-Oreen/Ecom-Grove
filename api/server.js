@@ -8,7 +8,7 @@ import productRoutes from "./routes/productRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import userRoutes from './routes/userRoutes.js';
 import brandRoutes from './routes/brandRoutes.js';
-import subCategoryRoutes from './routes/subCategoryRoutes.js';
+//import subCategoryRoutes from './routes/subCategoryRoutes.js';
 import  orderRoutes from './routes/orderRoutes.js';
 import  headerRoutes from './routes/headerRoutes.js';
 
@@ -31,7 +31,7 @@ app.use('/api/users', userRoutes)
 app.use("/api/category", categoryRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/brand", brandRoutes);
-app.use("/api/subcategory", subCategoryRoutes);
+// app.use("/api/subcategory", subCategoryRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/orders", orderRoutes );
 app.use("/api/headers", headerRoutes );
