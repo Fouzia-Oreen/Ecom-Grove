@@ -2,8 +2,9 @@ import { useState } from "react";
 import Marquee from "react-fast-marquee";
 import { AiOutlineLogin, AiOutlineUserAdd } from "react-icons/ai";
 import { CgMenuLeft } from "react-icons/cg";
+import { GoHeart } from "react-icons/go";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
-import { IoIosArrowDown, IoIosArrowForward, IoMdHeartEmpty } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { MdOutlineLocalPhone, MdOutlineMarkEmailUnread } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from 'react-router-dom';
@@ -12,15 +13,12 @@ import logo from '../../assets/ec-logo.png';
 import { useLogoutMutation } from "../../redux/api/userSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import FavoritesCount from "../products/FavouritesCount";
-import { GoHeart } from "react-icons/go";
-import HeartIcon from "../products/HeartIcon";
 
 
 const navlinks =[
     {link:"/", title:"Home"},
     {link:"/shop", title:"Shop"},
-    {link:"/about", title:"About"},
-    {link:"/offer", title:"Offers"},
+    {link:"/offers", title:"Offers"},
     {link:"/contact", title:"Contact"},
     {link:"/terms", title:"Terms & Cond"},
 
@@ -81,7 +79,7 @@ export const Navbar = () => {
         <span className="font-bold text-lg  hidden lg:block text-color_6">Ecom Grove</span>
         </Link>
         {/* nav-links */}
-        <div className="hidden lg:flex gap-5 ">
+        <div className="hidden lg:flex gap-5 lg:ml-12">
           {
             navlinks.map((nav) => (
               <NavLink to={nav.link} key={nav.link} className="flex flex-col items-start gap-[2px] text-color_4 hover:text-color_5 transition  duration-300 ">
@@ -140,7 +138,7 @@ export const Navbar = () => {
               </Link>
             </li>
             <li>
-            <Link to="/user-orders" className="block px-4 py-2 hover:bg-gray-100">
+            <Link to="/favorite" className="block px-4 py-2 hover:bg-gray-100">
                 Wishlist
               </Link>
             </li>
@@ -169,11 +167,11 @@ export const Navbar = () => {
         </div>
 
       {/* open menu on small devices */}
-      <div className={`absolute overflow-hidden top-0 right-0 bottom-0 bg-color_2 transition-all ${visible ? 'w-full z-10' : 'w-0'}`}>
+      <div className={`absolute overflow-hidden top-0 right-0 bottom-0 bg-color_2 transition-all ${visible ? 'w-full z-50 max-h-full ' : 'w-0'}`}>
             <div className="flex flex-col ">
               <div className="flex items-center  gap-4 p-3 cursor-pointer" onClick={() => setVisible(false)}>
                 <p className="text-lg font-medium text-color_4">Back</p>
-                <IoIosArrowForward className="size-7 text-color_4" />
+                <IoIosArrowForward className="size-5 text-color_4" />
               </div>
             {/* mobile menu */}
             {

@@ -21,12 +21,9 @@ const NewProductsSection = () => {
   
     return (
       <div className='container flex flex-col'>
-      <div className='px-2'>
       <Title text1={"New"} text2={"Products"} /> 
-      </div> 
        <Swiper
            slidesPerView={1}
-          //  centeredSlides={true}
            spaceBetween={0}
            autoplay={{
             delay: 2500,
@@ -53,16 +50,14 @@ const NewProductsSection = () => {
         >
       {
         products.map((product) => (
-          <>
-          
-          <SwiperSlide >
-            {/* product card */}
-            <div className=' w-full flex items-center justify-center'>       
-              < Product product={product} brand={brand}/>       
-            </div>                       
-          </SwiperSlide>
-  
-          </>
+        <>   
+        <SwiperSlide >
+          {/* product card */}
+          <div className=' w-full flex items-center justify-center mt-6' key={product._id}>       
+            < Product product={product} brand={brand}/>       
+          </div>                       
+        </SwiperSlide>
+        </>
         ))
       }
       </Swiper>

@@ -22,14 +22,14 @@ const TopProducts = () => {
     <Title text1={"Top"} text2={"Products"} />
     </div>
    
-    <div className="grid gap-4 lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 mx-auto  md:mx-2">
+    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4  mx-auto  md:mx-2">
        {products.slice(0, 6).map((product) => (
         <div key={product._id} className='mb-5'>
           <Product product={product} brand={brand}/>
         </div>
       ))}        
     </div>
-  </div>
+   </div>
   )
 }
 

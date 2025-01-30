@@ -76,7 +76,6 @@ const Login = () => {
             type="submit"
             className="auth-btn btn cursor-pointer]"
           >
-            {/* {isLoading ? "Registering..." : "Register"} */}
             {isLoading ? <Loader /> : "Login"}
           </button>
           <div className="mt-4">

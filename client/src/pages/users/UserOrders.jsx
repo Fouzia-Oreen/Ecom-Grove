@@ -9,7 +9,7 @@ const UserOrder = () => {
   const { data: orders, isLoading, error } = useGetMyOrdersQuery();
 
   return (
-    <div className="lg:container mx-auto overflow-x-auto p-2 min-h-screen">
+    <div className="lg:container mx-auto p-2 min-h-screen">
     <Title text1={"My"} text2={"Orders"} />
 
       {isLoading ? (
@@ -17,6 +17,7 @@ const UserOrder = () => {
       ) : error ? (
         <Message variant="danger">{error?.data?.error || error.error}</Message>
       ) : (
+        <div className="overflow-x-auto ">
         <table className="border-collapse w-full ">
           <thead>
             <tr className="border-b border-color_3 ">
@@ -78,6 +79,7 @@ const UserOrder = () => {
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </div>
   );
