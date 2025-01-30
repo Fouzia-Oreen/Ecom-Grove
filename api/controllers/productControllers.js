@@ -76,36 +76,6 @@ const removeProduct = asyncHandler(async (req, res) => {
   }
 });
 
-// fetch 12 products per page
-const fetchProducts = asyncHandler(async (req, res) => {
-  try {
-    const pageSize = 12;
-    const page = Number(req.query.page) || 1;
-    const keyword = req.query.keyword
-    ? {
-        name: {
-          $regex: req.query.keyword,
-          $options: 'i',
-        },
-      }
-    : {};
-
-    const count = await Product.countDocuments({ ...keyword });
-    const products = await Product.find({ ...keyword }).limit(pageSize).skip(pageSize * (page - 1));
-
-    res.json({
-      products,
-      page,
-      pages: Math.ceil(count / pageSize),
-      hasMore: page < Math.ceil(count / pageSize)
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server Error" });
-  }
-});
-
-// fetch a single product
 const fetchProductById = asyncHandler(async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -121,7 +91,6 @@ const fetchProductById = asyncHandler(async (req, res) => {
   }
 });
 
-// fetch all the products based on brand, category, subcategory
 const fetchAllProducts = asyncHandler(async (req, res) => {
   try {
     const products = await Product.find({})
@@ -177,7 +146,6 @@ const addProductReview = asyncHandler(async (req, res) => {
   }
 });
 
-// fetch top products with rating
 const fetchTopProducts = asyncHandler(async (req, res) => {
   try {
     const products = await Product.find({}).sort({ rating: -1 }).limit(8);
@@ -188,7 +156,6 @@ const fetchTopProducts = asyncHandler(async (req, res) => {
   }
 });
 
-// recently added or the newest products
 const fetchNewProducts = asyncHandler(async (req, res) => {
   try {
     const products = await Product.find().sort({ _id: -1 }).limit(12);
@@ -201,7 +168,7 @@ const fetchNewProducts = asyncHandler(async (req, res) => {
 
 const fetchOfferProducts = asyncHandler(async (req, res) => {
   try {
-    const products = await Product.find({}).sort({ offer: 1 }).limit();
+    const products = await Product.find({}).sort({ offer: -1 }).limit();
     res.json(products);
   } catch (error) {
     console.error(error);
@@ -209,7 +176,34 @@ const fetchOfferProducts = asyncHandler(async (req, res) => {
   }
 });
 
-// filter the products by category, subcategory, brand
+const fetchProducts = asyncHandler(async (req, res) => {
+  try {
+    const pageSize = 8;
+    const page = Number(req.query.page) || 1;
+    const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: 'i',
+        },
+      }
+    : {};
+
+    const count = await Product.countDocuments({ ...keyword });
+    const products = await Product.find({ ...keyword }).limit(pageSize).skip(pageSize * (page - 1));
+
+    res.json({
+      products,
+      page,
+      pages: Math.ceil(count / pageSize),
+      hasMore: page < Math.ceil(count / pageSize)
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server Error" });
+  }
+});
+
 const filterProducts = asyncHandler(async (req, res) => {
   try {
     const { checked, radio } = req.body;

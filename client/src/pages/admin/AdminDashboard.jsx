@@ -6,7 +6,6 @@ import { useFetchBrandsQuery } from "../../redux/api/brandSlice";
 import { useFetchCategoriesQuery } from "../../redux/api/categorySlice";
 import { useGetTotalOrdersQuery, useGetTotalSalesByDateQuery, useGetTotalSalesQuery } from "../../redux/api/orderSlice";
 import { useAllProductsQuery } from "../../redux/api/productSlice";
-import { useFetchSubCategoriesQuery } from "../../redux/api/subCategorySlice";
 import { useGetUsersQuery } from "../../redux/api/userSlice";
 import SidebarMenu from "./SidebarMenu";
 
@@ -18,7 +17,6 @@ const AdminDashboard = () => {
   const {data: totalOrder } = useGetTotalOrdersQuery()
   const { data: products} = useAllProductsQuery();
   const { data: categories} = useFetchCategoriesQuery();
-  const {data: subCategory} = useFetchSubCategoriesQuery();
   const {data: brands} = useFetchBrandsQuery();
 
 
@@ -97,7 +95,7 @@ const AdminDashboard = () => {
 
 
   return (
-    <div className="flex  lg:justify-center ">
+    <div className="flex lg:justify-center ">
       <SidebarMenu />
       <div className="md:px-12 lg:w-[1400px] overflow-hidden">
       <Title text1={"Admin"} text2={"Dashboard"}/>
@@ -135,12 +133,6 @@ const AdminDashboard = () => {
           </h1>
         </div>
         <div className="rounded-lg p-5  mt-5 bg-color_2 lg:h-[7rem]">
-          <p className=" text-color_6 font-medium lg:text-lg">Total Sub-Categories</p>
-          <h1 className="text-xl font-bold lg:text-2xl">
-             {isLoading ? <Loader /> : subCategory?.length}
-          </h1>
-        </div>
-        <div className="rounded-lg p-5  mt-5 bg-color_2 lg:h-[7rem]">
           <p className=" text-color_6 font-medium lg:text-lg">Total Brands</p>
           <h1 className="text-xl font-bold lg:text-2xl">
               {isLoading ? <Loader /> : brands?.length}
@@ -148,7 +140,7 @@ const AdminDashboard = () => {
         </div>
       </div>
         {/* chart */}
-        <div className="  my-[4rem] w-full lg:w-[80%] border border-color_3 p-2 rounded-md bg-color_1">
+        <div className=" my-[4rem] lg:w-[80%] border border-color_3 p-2 rounded-md bg-color_1">
           <Chart
             options={state.options}
             series={state.series}

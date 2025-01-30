@@ -80,7 +80,7 @@ const AllProducts = () => {
       </div>
 
       {/* Your admin dashboard content goes here */}
-      <div className="">
+      <div >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-14">
       {data?.products.map((product) => (
         <Link

@@ -9,7 +9,6 @@ import {
   useCreateProductMutation,
   useUploadProductImageMutation,
 } from "../../redux/api/productSlice";
-import { useFetchSubCategoriesQuery } from "../../redux/api/subCategorySlice";
 import SidebarMenu from "./SidebarMenu";
 
 
@@ -19,7 +18,7 @@ const AddProduct = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [oldPrice, setOldPrice] = useState("");
-  const [subCategory, setSubCategory] = useState("");
+  const [offer, setOffer] = useState("");
   const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState("");
   const [brand, setBrand] = useState("");
@@ -30,7 +29,6 @@ const AddProduct = () => {
   const [uploadProductImage] = useUploadProductImageMutation();
   const [createProduct] = useCreateProductMutation();
   const { data: categories } = useFetchCategoriesQuery();
-  const { data: subCategories } = useFetchSubCategoriesQuery();
   const { data: brands } = useFetchBrandsQuery();
 
   const handleSubmit = async (e) => {
@@ -44,7 +42,7 @@ const AddProduct = () => {
       productData.append("price", price);
       productData.append("oldPrice", oldPrice);
       productData.append("category", category);
-      productData.append("subCategory", subCategory);
+      productData.append("offer", setOffer);
       productData.append("quantity", quantity);
       productData.append("brand", brand);
       productData.append("countInStock", stock);
@@ -160,21 +158,6 @@ const AddProduct = () => {
                 ))}
               </select>
             </div>
-            {/* sub category */}
-            <div className="flex flex-col w-full mb-4">
-              <label htmlFor="" className="font-semibold text-color_4">Sub Category</label>
-              <select
-                placeholder="Choose SubCategory"
-                className="mt-1 p-3 border rounded w-full placeholder-color_3 border-color_4/30 cursor-pointer"
-                onChange={(e) => setSubCategory(e.target.value)}
-              >
-                {subCategories?.map((s) => (
-                  <option key={s._id} value={s._id}>
-                    {s.name}
-                  </option>
-                ))}
-              </select>
-            </div>
             </div>
             {/* prices */}
             <div className="flex flex-col gap-4 items-center md:gap-12 md:flex-row w-full mb-4">
@@ -199,7 +182,10 @@ const AddProduct = () => {
               <Input type="number" value={stock} onChange={(e) => setStock(e.target.value)}/>
             </div>
             </div>
-
+            <div className="flex items-center w-full mb-4 gap-2">
+              <input type="checkbox" className="size-5" value={offer} onChange={(e) => setOffer(e.target.value)}/>
+              <label htmlFor="stock" className="font-semibold text-color_4">Product In Offer</label>
+            </div>
           </div>
           {/* submit button */}
           <button

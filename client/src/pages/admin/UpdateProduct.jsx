@@ -10,7 +10,6 @@ import {
   useUpdateProductMutation,
   useUploadProductImageMutation,
 } from "../../redux/api/productSlice";
-import { useFetchSubCategoriesQuery } from "../../redux/api/subCategorySlice";
 import SidebarMenu from "./SidebarMenu";
 import Title from "../../components/Title";
 import Input from "../../components/Input";
@@ -25,21 +24,16 @@ const UpdateProduct = () => {
   const [price, setPrice] = useState(productData?.price || "");
   const [oldPrice, setOldPrice] = useState(productData?.oldPrice || "");
   const [category, setCategory] = useState(productData?.category || "");
-  const [subCategory, setSubCategory] = useState(productData?.subCategory || "");
   const [quantity, setQuantity] = useState(productData?.quantity || "");
   const [brand, setBrand] = useState(productData?.brand || "");
   const [stock, setStock] = useState(productData?.countInStock);
   const navigate = useNavigate();
 
-  // Fetch categories using RTK Query
   const { data: categories = [] } = useFetchCategoriesQuery();
-  const { data: subCategories = [] } = useFetchSubCategoriesQuery();
   const { data: brands = [] } = useFetchBrandsQuery();
   const [uploadProductImage] = useUploadProductImageMutation();
 
-  // Define the update product mutation
   const [updateProduct] = useUpdateProductMutation();
-  // Define the delete product mutation
   const [deleteProduct] = useDeleteProductMutation();
 
   useEffect(() => {
@@ -49,7 +43,6 @@ const UpdateProduct = () => {
       setPrice(productData.price);
       setOldPrice(productData.oldPrice);
       setCategory(productData.category?._id);
-      setSubCategory(productData.subCategory?._id);
       setBrand(productData.brand?._id);
       setQuantity(productData.quantity);
       setImage(productData.image);
@@ -80,7 +73,6 @@ const UpdateProduct = () => {
       formData.append("price", price);
       formData.append("category", category);
       formData.append("brand", brand);
-      formData.append("subCategory", subCategory);
       formData.append("quantity", quantity);
       formData.append("brand", brand);
       formData.append("countInStock", stock);
@@ -191,21 +183,6 @@ const UpdateProduct = () => {
                 onChange={(e) => setCategory(e.target.value)}
               >
                 {categories?.map((c) => (
-                  <option key={c._id} value={c._id}>
-                    {c.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            {/* sub category */}
-            <div className="flex flex-col w-full mb-4">
-              <label htmlFor="">Sub Category</label>
-              <select
-                placeholder="Choose SubCategory"
-                className="mt-1 p-3 border rounded w-full placeholder-color_3 border-color_4/30"
-                onChange={(e) => setSubCategory(e.target.value)}
-              >
-                {subCategories?.map((c) => (
                   <option key={c._id} value={c._id}>
                     {c.name}
                   </option>
