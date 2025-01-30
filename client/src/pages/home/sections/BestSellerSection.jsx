@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { slides } from '../../../assets/data'
 import Carousel from '../../../components/Carousel'
 import Title from '../../../components/Title'
@@ -29,7 +30,7 @@ const BestSellerSection = () => {
                 <h4 className="underline mb-2 text-xl"><strong>Brand : </strong>Gigabyte</h4>
                 <p className="text-gray-500 text-lg">These headphones are not only amazing for the design and features, but also for the audio quality. They are comfortable and lightweight for hours</p>
                 <div className="flex gap-6 mt-8">
-                <button className="btn add-btn" onClick={''}> Buy Now </button>
+                <Link className="btn add-btn" to="/shop"> View More</Link>
                 <button className="btn submit-btn" onClick={''}> Add To Cart </button>
                 </div>
               </div>
