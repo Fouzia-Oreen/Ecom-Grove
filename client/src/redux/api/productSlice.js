@@ -29,14 +29,12 @@ export const productSlice = apiSlice.injectEndpoints({
       allProducts: builder.query({
         query: () => `${PRODUCT_URL}/allProducts`,
       }),
-  
       getProductDetails: builder.query({
         query: (productId) => ({
           url: `${PRODUCT_URL}/${productId}`,
         }),
         keepUnusedDataFor: 5,
       }),
-  
       createProduct: builder.mutation({
         query: (productData) => ({
           url: `${PRODUCT_URL}`,
@@ -44,8 +42,7 @@ export const productSlice = apiSlice.injectEndpoints({
           body: productData,
         }),
         invalidatesTags: ["Product"],
-      }),
-  
+      }), 
       updateProduct: builder.mutation({
         query: ({ productId, formData }) => ({
           url: `${PRODUCT_URL}/${productId}`,
@@ -53,7 +50,6 @@ export const productSlice = apiSlice.injectEndpoints({
           body: formData,
         }),
       }),
-  
       uploadProductImage: builder.mutation({
         query: (data) => ({
           url: `${UPLOAD_URL}`,
@@ -61,7 +57,6 @@ export const productSlice = apiSlice.injectEndpoints({
           body: data,
         }),
       }),
-  
       deleteProduct: builder.mutation({
         query: (productId) => ({
           url: `${PRODUCT_URL}/${productId}`,
@@ -69,7 +64,6 @@ export const productSlice = apiSlice.injectEndpoints({
         }),
         providesTags: ["Product"],
       }),
-  
       createReview: builder.mutation({
         query: (data) => ({
           url: `${PRODUCT_URL}/${data.productId}/reviews`,
@@ -77,17 +71,18 @@ export const productSlice = apiSlice.injectEndpoints({
           body: data,
         }),
       }),
-  
       getTopProducts: builder.query({
         query: () => `${PRODUCT_URL}/top`,
         keepUnusedDataFor: 5,
       }),
-  
       getNewProducts: builder.query({
         query: () => `${PRODUCT_URL}/new`,
         keepUnusedDataFor: 5,
       }),
-  
+      getOfferProducts: builder.query({
+        query: () => `${PRODUCT_URL}/offer`,
+        keepUnusedDataFor: 5,
+      }),
       getFilteredProducts: builder.query({
         query: ({ checked, radio }) => ({
           url: `${PRODUCT_URL}/filtered-products`,
@@ -110,6 +105,7 @@ export const productSlice = apiSlice.injectEndpoints({
     useCreateReviewMutation,
     useGetTopProductsQuery,
     useGetNewProductsQuery,
+    useGetOfferProductsQuery,
     useUploadProductImageMutation,
     useGetFilteredProductsQuery,
   } = productSlice;
